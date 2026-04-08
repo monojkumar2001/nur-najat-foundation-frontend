@@ -13,7 +13,7 @@ const events = [
     date: "TBD — April 2025",
     location: "Main office",
     image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&w=600&q=80",
   },
   {
     title: "Youth skills fair",

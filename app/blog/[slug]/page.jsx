@@ -26,7 +26,7 @@ const posts = {
     title: "Q2 training calendar published",
     date: "January 28, 2025",
     cover:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&w=1200&q=80",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&w=1200&q=80",
     body: [
       "Placeholder article body. List workshop dates, locations, and registration details.",
     ],

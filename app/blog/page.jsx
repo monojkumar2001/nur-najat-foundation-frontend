@@ -31,7 +31,7 @@ const posts = [
     date: "January 28, 2025",
     excerpt: "Upcoming workshops for youth and community facilitators.",
     image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&w=800&q=80",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&w=800&q=80",
   },
 ];
 
