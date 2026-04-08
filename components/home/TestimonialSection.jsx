@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const bgImage =
-  "https://images.unsplash.com/photo-1488521787991-ed7bbaae773f?auto=format&fit=crop&w=1920&q=80";
+  "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&w=1920&q=80";
 
 export function TestimonialSection() {
   return (
@@ -13,7 +13,7 @@ export function TestimonialSection() {
         className="object-cover"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-navy/80" />
+      <div className="absolute inset-0 bg-slate-950/80" />
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
         <svg
           className="mx-auto h-10 w-10 text-accent"

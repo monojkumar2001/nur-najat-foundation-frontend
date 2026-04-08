@@ -11,7 +11,7 @@ export function SectionHeading({
     <div className={`max-w-3xl ${alignClass} ${align === "center" ? "mx-auto" : ""} ${className}`}>
       {eyebrow ? (
         <p
-          className={`mb-2 text-sm font-semibold uppercase tracking-widest ${
+          className={`mb-2 text-base font-semibold uppercase tracking-widest ${
             light ? "text-accent" : "text-primary"
           }`}
         >
@@ -19,15 +19,15 @@ export function SectionHeading({
         </p>
       ) : null}
       <h2
-        className={`heading-font text-3xl font-bold sm:text-4xl ${
-          light ? "text-white" : "text-navy"
+        className={`heading-font uppercase text-3xl line-height-10 leading-tight font-bold sm:text-3xl lg:text-4xl ${
+          light ? "text-white" : "text-slate-900"
         }`}
       >
         {title}
       </h2>
       {subtitle ? (
         <p
-          className={`mt-4 text-base leading-relaxed ${
+          className={`mt-4 text-lg leading-relaxed ${
             light ? "text-white/85" : "text-muted"
           }`}
         >

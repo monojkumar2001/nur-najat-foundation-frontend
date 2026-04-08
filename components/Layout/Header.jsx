@@ -112,7 +112,7 @@ export function Header() {
               <div key={item.label} className="relative" ref={whoRef}>
                 <button
                   type="button"
-                  className={`${linkBase} ${linkIdle} inline-flex items-center gap-1`}
+                  className={`${linkBase} ${linkIdle} cursor-pointer inline-flex items-center gap-1`}
                   aria-expanded={desktopWhoOpen}
                   aria-haspopup="true"
                   onClick={() => setDesktopWhoOpen((v) => !v)}
@@ -132,7 +132,7 @@ export function Header() {
                         key={sub.href}
                         href={sub.href}
                         role="menuitem"
-                        className="block px-4 py-2 text-sm text-neutral-800 hover:bg-neutral-50 hover:text-primary"
+                        className="block px-4 py-2 text-base text-neutral-800 hover:bg-neutral-50 hover:text-primary"
                         onClick={() => setDesktopWhoOpen(false)}
                       >
                         {sub.label}

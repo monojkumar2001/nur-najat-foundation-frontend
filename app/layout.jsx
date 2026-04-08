@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Heath Foundation | Empowering Communities",
+  title: "Nur and Najat Foundation | Empowering Communities",
   description:
     "Non-profit organization dedicated to education, healthcare, and community development.",
 };
@@ -22,7 +22,9 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
       >
         <Header />
-        {children}
+        <main className="min-h-screen bg-slate-50 text-slate-900 antialiased">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

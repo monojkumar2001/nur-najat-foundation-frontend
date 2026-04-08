@@ -1,9 +1,13 @@
 import Link from "next/link";
 
 const quickLinks = [
-  { href: "/about", label: "Who we are" },
+  { href: "/about", label: "About us" },
   { href: "/programs", label: "Programs" },
+  { href: "/get-involved", label: "Get involved" },
+  { href: "/resources", label: "Resources" },
   { href: "/blog", label: "Blog" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/events", label: "Events" },
   { href: "/contact", label: "Contact" },
   { href: "/donate", label: "Donate" },
 ];
@@ -14,7 +18,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
-            <p className="heading-font text-xl font-bold">Heath Foundation</p>
+            <p className="heading-font text-xl font-bold">Nur and Najat Foundation</p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/75">
               A non-profit dedicated to education, health, and community-led
               development. Tax-exempt status where applicable.
@@ -85,7 +89,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/55 sm:flex-row">
-          <p>© {new Date().getFullYear()} Heath Foundation. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Nur and Najat Foundation. All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-white">
               Privacy

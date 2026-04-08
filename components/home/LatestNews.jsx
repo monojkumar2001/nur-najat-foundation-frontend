@@ -4,28 +4,28 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const posts = [
   {
-    href: "/blog/winter-drive",
+    href: "/blog/field-update-spring",
     tag: "Community",
     date: "Mar 12, 2025",
-    title: "Winter relief drive reaches 200 households",
+    title: "Spring outreach: notes from the field",
     image:
-      "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&w=800&q=80",
   },
   {
-    href: "/blog/scholarship",
+    href: "/blog/literacy-program",
     tag: "Education",
     date: "Feb 28, 2025",
-    title: "New scholarships for STEM mentorship",
+    title: "Expanding literacy circles",
     image:
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&w=800&q=80",
   },
   {
-    href: "/blog/clinic",
-    tag: "Healthcare",
-    date: "Feb 5, 2025",
-    title: "Mobile clinic expands to two new wards",
+    href: "/blog/training-calendar",
+    tag: "Programs",
+    date: "Jan 28, 2025",
+    title: "Q2 training calendar published",
     image:
-      "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&w=800&q=80",
   },
 ];
 
@@ -43,25 +43,25 @@ export function LatestNews() {
           {posts.map((post) => (
             <article
               key={post.href}
-              className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-xl"
             >
-              <Link href={post.href} className="relative aspect-[16/10] block">
+              <Link href={post.href} className="relative aspect-[16/10] block overflow-hidden">
                 <Image
                   src={post.image}
                   alt=""
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(min-width: 768px) 33vw, 100vw"
                 />
               </Link>
               <div className="flex flex-1 flex-col p-6">
-                <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide text-muted">
+                <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide text-slate-500">
                   <span className="rounded-full bg-primary/10 px-2 py-0.5 text-primary">
                     {post.tag}
                   </span>
                   <span>{post.date}</span>
                 </div>
-                <h3 className="heading-font mt-3 text-lg font-bold text-navy">
+                <h3 className="heading-font mt-3 text-lg font-bold text-slate-900">
                   <Link href={post.href} className="hover:text-primary">
                     {post.title}
                   </Link>
