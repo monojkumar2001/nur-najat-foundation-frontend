@@ -285,7 +285,7 @@ export default function MembershipStructure() {
        
           </div>
           <div className="bg-[#F5F2F0] py-16 sm:py-20">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
             <div className="order-2 lg:order-1">
               <h3 className="heading-font text-2xl font-bold uppercase text-slate-900 sm:text-3xl">
                 Life member
@@ -313,7 +313,7 @@ export default function MembershipStructure() {
           </div>
         
         <div className="bg-white py-16 sm:py-20">
-          <div className="mx-auto grid max-w-6xl items-stretch gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+          <div className="mx-auto grid max-w-7xl items-stretch gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
           <div className="flex h-full min-h-[22rem] w-full">
               <div className="relative h-full min-h-[22rem] w-full flex-1 overflow-hidden rounded-xl ring-1 ring-slate-200/60 lg:min-h-0">
                 <HoverPhoto
@@ -357,7 +357,7 @@ export default function MembershipStructure() {
         </div>
 
         <div className="bg-[#f5f2eb] py-16 sm:py-20">
-          <div className="mx-auto grid max-w-6xl items-stretch gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+          <div className="mx-auto grid max-w-7xl items-stretch gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
           <div className="order-2 flex flex-col justify-center lg:order-1">
               <div className="rounded-2xl border border-white/60 bg-white/95 p-6 shadow-md ring-1 ring-slate-200/40 backdrop-blur-sm sm:p-8">
                 <p className="text-sm font-semibold uppercase tracking-wide text-primary">
