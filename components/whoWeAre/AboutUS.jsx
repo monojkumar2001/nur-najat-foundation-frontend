@@ -1,15 +1,28 @@
-import Image from "next/image";
+"use client";
 
+import Image from "next/image";
+import { motion } from "framer-motion";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { thumb } from "@/lib/unsplash";
+import { EASE, DURATION } from "@/lib/motion";
+
+const view = {
+  once: true,
+  amount: 0.2,
+};
 
 export function AboutUS() {
   return (
     <>
-      {/* About */}
       <section className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
-        <div className="lg:col-span-5">
+        <motion.div
+          className="lg:col-span-5"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={view}
+          transition={{ duration: DURATION.section, ease: EASE }}
+        >
           <SectionHeading
             eyebrow="Who we are"
             title="Grassroots work. Long-term impact."
@@ -35,9 +48,15 @@ export function AboutUS() {
               Donate
             </ButtonLink>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="lg:col-span-7">
+        <motion.div
+          className="lg:col-span-7"
+          initial={{ opacity: 0, scale: 1.04 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={view}
+          transition={{ duration: 0.75, ease: EASE }}
+        >
           <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-lg">
             <div className="relative aspect-4/3">
               <Image
@@ -62,7 +81,7 @@ export function AboutUS() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </>
   );

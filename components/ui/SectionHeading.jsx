@@ -5,6 +5,7 @@ export function SectionHeading({
   light = false,
   align = "center",
   className = "",
+  titleId,
 }) {
   const alignClass = align === "left" ? "text-left" : "text-center";
   return (
@@ -19,6 +20,7 @@ export function SectionHeading({
         </p>
       ) : null}
       <h2
+        id={titleId}
         className={`heading-font uppercase text-2xl line-height-10 leading-tight font-bold sm:text-3xl lg:text-4xl ${
           light ? "text-white" : "text-slate-900"
         }`}

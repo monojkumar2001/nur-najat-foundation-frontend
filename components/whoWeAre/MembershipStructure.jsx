@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
-import { SectionHeading } from "../ui/SectionHeading";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { EASE, DURATION } from "@/lib/motion";
 
 function IconFacebook({ className = "h-4 w-4" }) {
   return (
@@ -106,6 +110,8 @@ const programMemberImage = "/assets/images/program.png";
 const dutiesImage =
   "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&w=960&q=80";
 
+const viewport = { once: true, amount: 0.15 };
+
 function HoverPhoto({ src, alt, sizes, fillCell = false }) {
   return (
     <div
@@ -131,7 +137,14 @@ function ExecutiveCard({ member }) {
   const title = member.cardTitle ?? member.name;
 
   return (
-    <article className="flex w-full max-w-[18rem] cursor-pointer  flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-slate-200/50">
+    <motion.article
+      className="flex w-full max-w-[18rem] cursor-pointer flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-slate-200/50"
+      initial={{ opacity: 0, y: 22 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={viewport}
+      transition={{ duration: DURATION.section, ease: EASE }}
+      whileHover={{ y: -5 }}
+    >
       <div className="group relative aspect-4/5 w-full overflow-hidden bg-slate-100">
         <Image
           src={member.image}
@@ -159,7 +172,7 @@ function ExecutiveCard({ member }) {
             href={social.facebook}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-opacity hover:opacity-70 hover:text-primary transition-colors duration-300"
+            className="transition-colors duration-300 hover:text-primary hover:opacity-70"
             aria-label={`${member.name} on Facebook`}
           >
             <IconFacebook className="h-5 w-5" />
@@ -168,7 +181,7 @@ function ExecutiveCard({ member }) {
             href={social.twitter}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-opacity hover:opacity-70 hover:text-primary transition-colors duration-300"
+            className="transition-colors duration-300 hover:text-primary hover:opacity-70"
             aria-label={`${member.name} on X`}
           >
             <IconTwitter className="h-5 w-5" />
@@ -177,7 +190,7 @@ function ExecutiveCard({ member }) {
             href={social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-opacity hover:opacity-70 hover:text-primary transition-colors duration-300"
+            className="transition-colors duration-300 hover:text-primary hover:opacity-70"
             aria-label={`${member.name} on LinkedIn`}
           >
             <IconLinkedIn className="h-5 w-5" />
@@ -192,7 +205,7 @@ function ExecutiveCard({ member }) {
           See more
         </a>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -207,25 +220,37 @@ export default function MembershipStructure() {
       aria-label="Membership structure"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
+        <motion.div
+          className="mx-auto max-w-4xl px-4 text-center sm:px-6"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
+          transition={{ duration: DURATION.section, ease: EASE }}
+        >
           <h2 className="heading-font text-3xl font-bold uppercase leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
             Membership structure
           </h2>
           <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
             {introSubtitle}
           </p>
-        </div>
+        </motion.div>
 
-        <div className="mx-auto mt-8 md:mt-10 max-w-6xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="mx-auto mt-8 max-w-6xl px-4 sm:mt-10 sm:px-6 lg:px-8"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
+          transition={{ duration: DURATION.section, ease: EASE, delay: 0.04 }}
+        >
           <h3 className="heading-font text-2xl font-bold uppercase text-slate-900 sm:text-3xl">
             General member
           </h3>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             <div className="rounded-bl-3xl rounded-tr-3xl bg-[#e8f4fc] px-6 py-7 shadow-sm ring-1 ring-sky-100/80 sm:px-8 sm:py-8">
-              <h3 className="text-xl md:text-2xl font-bold uppercase tracking-wide text-black">
+              <h3 className="text-xl font-bold uppercase tracking-wide text-black md:text-2xl">
                 Founder members
               </h3>
-              <p className="mt-4 text-base md:text-lg leading-relaxed text-muted">
+              <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
                 Individuals who were present at the founding meeting of the
                 Foundation and expressed willingness to contribute—financially
                 or otherwise—toward social development shall be recognized as
@@ -235,172 +260,225 @@ export default function MembershipStructure() {
               </p>
             </div>
             <div className="rounded-bl-3xl rounded-tr-3xl bg-[#e8f4fc] px-6 py-7 shadow-sm ring-1 ring-sky-100/80 sm:px-8 sm:py-8">
-              <h3 className="text-xl md:text-2xl font-bold uppercase tracking-wide text-black">
+              <h3 className="text-xl font-bold uppercase tracking-wide text-black md:text-2xl">
                 General members
               </h3>
-              <p className="mt-4 text-base md:text-lg leading-relaxed text-muted">
+              <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
                 Any individual may apply for General Membership. Admission is
                 subject to approval by the Executive Board and final acceptance
                 by the President upon recommendation from the Secretary.
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="mt-8 md:mt-10 bg-white py-16 sm:py-20">
-            <h3 className="heading-font text-center text-2xl font-bold uppercase text-slate-900 sm:text-3xl">
-              Executive board member
+        <motion.div
+          className="mt-8 bg-white py-16 sm:mt-10 sm:py-20"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
+          transition={{ duration: DURATION.section, ease: EASE, delay: 0.05 }}
+        >
+          <h3 className="heading-font text-center text-2xl font-bold uppercase text-slate-900 sm:text-3xl">
+            Executive board member
+          </h3>
+          <p className="mx-auto mt-6 max-w-3xl text-center text-base leading-relaxed text-muted sm:text-lg">
+            Executive Board Members are responsible for the governance and
+            strategic direction of the Foundation.
+          </p>
+          <ul className="mx-auto mt-6 flex max-w-3xl flex-col gap-3 px-4 text-left text-base text-muted sm:text-lg">
+            <li className="flex items-start gap-2">
+              <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
+              <span>
+                Individuals elected or selected by the General Committee.
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
+              <span>
+                Individuals are admitted to the Board with the approval of the
+                Executive Board.
+              </span>
+            </li>
+          </ul>
+
+          <div className="mt-12 grid justify-items-center gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10">
+            {boardFirstRow.map((m) => (
+              <ExecutiveCard key={m.name} member={m} />
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap justify-center gap-8 lg:mt-10 lg:gap-x-6">
+            {boardSecondRow.map((m) => (
+              <ExecutiveCard key={m.name} member={m} />
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      <motion.div
+        className="bg-[#F5F2F0] py-16 sm:py-20"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={viewport}
+        transition={{ duration: DURATION.section, ease: EASE }}
+      >
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+          <motion.div
+            className="order-2 lg:order-1"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewport}
+            transition={{ duration: DURATION.section, ease: EASE }}
+          >
+            <h3 className="heading-font text-2xl font-bold uppercase text-slate-900 sm:text-3xl">
+              Life member
             </h3>
-            <p className="mx-auto mt-6 max-w-3xl text-center text-base leading-relaxed text-muted sm:text-lg">
-              Executive Board Members are responsible for the governance and
-              strategic direction of the Foundation.
+            <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
+              Individuals who are inspired by the objectives and programs of
+              the Foundation may become Life Members by making a{" "}
+              <strong className="font-semibold text-slate-900">
+                one-time contribution of BDT 20,000.00
+              </strong>{" "}
+              (or any amount set by the Executive Board), either in cash or in
+              property of equivalent value.
             </p>
-            <ul className="mx-auto mt-6 flex max-w-3xl flex-col  gap-3 px-4 text-left text-base text-muted sm:text-lg">
-              <li className="flex items-start gap-2">
-                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                <span>
-                  Individuals elected or selected by the General Committee.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                <span>
-                  Individuals are admitted to the Board with the approval of the
-                  Executive Board.
-                </span>
-              </li>
-            </ul>
+          </motion.div>
+          <motion.div
+            className="order-1 overflow-hidden rounded-xl ring-1 ring-slate-200/60 lg:order-2"
+            initial={{ opacity: 0, scale: 1.04 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={viewport}
+            transition={{ duration: 0.75, ease: EASE }}
+          >
+            <HoverPhoto
+              src={lifeMemberImage}
+              alt="Community members together"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+            />
+          </motion.div>
+        </div>
+      </motion.div>
 
-            <div className="mt-12 grid justify-items-center gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10">
-              {boardFirstRow.map((m) => (
-                <ExecutiveCard key={m.name} member={m} />
-              ))}
-            </div>
-            <div className="mt-8 flex flex-wrap justify-center gap-8 lg:mt-10 lg:gap-x-6">
-              {boardSecondRow.map((m) => (
-                <ExecutiveCard key={m.name} member={m} />
-              ))}
-            </div>
-          </div>
-       
-          </div>
-          <div className="bg-[#F5F2F0] py-16 sm:py-20">
-          <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-            <div className="order-2 lg:order-1">
-              <h3 className="heading-font text-2xl font-bold uppercase text-slate-900 sm:text-3xl">
-                Life member
-              </h3>
-              <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-                Individuals who are inspired by the objectives and programs of
-                the Foundation may become Life Members by making a{" "}
-                <strong className="font-semibold text-slate-900">
-                  one-time contribution of BDT 20,000.00
-                </strong>{" "}
-                (or any amount set by the Executive Board), either in cash or
-                in property of equivalent value.
-              </p>
-         
-            </div>
-            <div className="order-1 overflow-hidden rounded-xl ring-1 ring-slate-200/60 lg:order-2">
+      <motion.div
+        className="bg-white py-16 sm:py-20"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={viewport}
+        transition={{ duration: DURATION.section, ease: EASE }}
+      >
+        <div className="mx-auto grid max-w-7xl items-stretch gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+          <motion.div
+            className="flex h-full min-h-[22rem] w-full"
+            initial={{ opacity: 0, scale: 1.03 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={viewport}
+            transition={{ duration: 0.75, ease: EASE }}
+          >
+            <div className="relative h-full min-h-[22rem] w-full flex-1 overflow-hidden rounded-xl ring-1 ring-slate-200/60 lg:min-h-0">
               <HoverPhoto
-                src={lifeMemberImage}
-                alt="Community members together"
-                sizes="(min-width: 1024px) 100vw, 100vw"
+                fillCell
+                src={programMemberImage}
+                alt="Multi-generational family in a rural village setting"
+                sizes="(min-width: 1024px) 50vw, 100vw"
               />
             </div>
-          </div>
-
-          </div>
-        
-        <div className="bg-white py-16 sm:py-20">
-          <div className="mx-auto grid max-w-7xl items-stretch gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-          <div className="flex h-full min-h-[22rem] w-full">
-              <div className="relative h-full min-h-[22rem] w-full flex-1 overflow-hidden rounded-xl ring-1 ring-slate-200/60 lg:min-h-0">
-                <HoverPhoto
-                  fillCell
-                  src={programMemberImage}
-                  alt="Multi-generational family in a rural village setting"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col">
-            
+          </motion.div>
+          <motion.div
+            className="flex flex-col"
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewport}
+            transition={{ duration: DURATION.section, ease: EASE, delay: 0.06 }}
+          >
             <SectionHeading
-                title="Program member"
-                subtitle="Program Members are individuals who participate in and benefit from the Foundation’s various initiatives and development programs."
-                align="left"
-              />
-              <h4 className="mt-6 text-lg md:text-xl leading-tight tracking-tight font-bold text-slate-900">
-                Program membership
-              </h4>
-              <p className="mt-3 text-base leading-relaxed text-muted sm:text-lg">
-                Any individual seeking to benefit from the Foundation’s
-                programs may apply through the local office. Membership is
-                granted upon:
+              title="Program member"
+              subtitle="Program Members are individuals who participate in and benefit from the Foundation’s various initiatives and development programs."
+              align="left"
+            />
+            <h4 className="mt-6 text-lg font-bold leading-tight tracking-tight text-slate-900 md:text-xl">
+              Program membership
+            </h4>
+            <p className="mt-3 text-base leading-relaxed text-muted sm:text-lg">
+              Any individual seeking to benefit from the Foundation’s programs
+              may apply through the local office. Membership is granted upon:
+            </p>
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-muted marker:text-primary">
+              {programApplicationSteps.map((step) => (
+                <li key={step} className="flex items-start gap-2">
+                  <CheckCircle className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
+                  <span className="text-base text-muted">{step}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
+              Approved applicants will be considered members of the respective
+              program under the Foundation.
+            </p>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="bg-[#f5f2eb] py-16 sm:py-20"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={viewport}
+        transition={{ duration: DURATION.section, ease: EASE }}
+      >
+        <div className="mx-auto grid max-w-7xl items-stretch gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+          <motion.div
+            className="order-2 flex flex-col justify-center lg:order-1"
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewport}
+            transition={{ duration: DURATION.section, ease: EASE }}
+          >
+            <div className="rounded-2xl border border-white/60 bg-white/95 p-6 shadow-md ring-1 ring-slate-200/40 backdrop-blur-sm sm:p-8">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                Expectations
               </p>
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-muted marker:text-primary">
-                {programApplicationSteps.map((step) => (
-                  <li key={step} className="flex items-start gap-2">
-                    <CheckCircle className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                    <span className="text-base text-muted">{step}</span>
+              <h3 className="heading-font mt-2 text-2xl font-bold uppercase leading-tight text-slate-900 sm:text-3xl">
+                Duties &amp; responsibilities of program members
+              </h3>
+              <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
+                Program Members are expected to:
+              </p>
+              <ul className="mt-8 flex flex-col gap-3 sm:gap-4">
+                {programMemberDuties.map((duty) => (
+                  <li
+                    key={duty}
+                    className="flex gap-3 rounded-xl bg-[#f5f2eb]/90 px-4 py-3.5 ring-1 ring-slate-200/60 sm:px-5 sm:py-4"
+                  >
+                    <CheckCircle
+                      className="mt-0.5 h-5 w-5 shrink-0 text-primary"
+                      aria-hidden
+                    />
+                    <span className="text-base leading-relaxed text-muted">
+                      {duty}
+                    </span>
                   </li>
                 ))}
               </ul>
-              <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-                Approved applicants will be considered members of the
-                respective program under the Foundation.
-              </p>
             </div>
-          
-          </div>
+          </motion.div>
+          <motion.div
+            className="order-1 flex h-full min-h-[22rem] w-full lg:order-2"
+            initial={{ opacity: 0, scale: 1.03 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={viewport}
+            transition={{ duration: 0.75, ease: EASE, delay: 0.05 }}
+          >
+            <div className="relative h-full min-h-[22rem] w-full flex-1 overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200/50 lg:min-h-0">
+              <HoverPhoto
+                fillCell
+                src={dutiesImage}
+                alt="Children learning in a classroom"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+            </div>
+          </motion.div>
         </div>
-
-        <div className="bg-[#f5f2eb] py-16 sm:py-20">
-          <div className="mx-auto grid max-w-7xl items-stretch gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-          <div className="order-2 flex flex-col justify-center lg:order-1">
-              <div className="rounded-2xl border border-white/60 bg-white/95 p-6 shadow-md ring-1 ring-slate-200/40 backdrop-blur-sm sm:p-8">
-                <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-                  Expectations
-                </p>
-                <h3 className="heading-font mt-2 text-2xl font-bold uppercase leading-tight text-slate-900 sm:text-3xl">
-                  Duties &amp; responsibilities of program members
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
-                  Program Members are expected to:
-                </p>
-                <ul className="mt-8 flex flex-col gap-3 sm:gap-4">
-                  {programMemberDuties.map((duty) => (
-                    <li
-                      key={duty}
-                      className="flex gap-3 rounded-xl bg-[#f5f2eb]/90 px-4 py-3.5 ring-1 ring-slate-200/60 sm:px-5 sm:py-4"
-                    >
-                      <CheckCircle
-                        className="mt-0.5 h-5 w-5 shrink-0 text-primary"
-                        aria-hidden
-                      />
-                      <span className="text-base leading-relaxed text-muted">
-                        {duty}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="order-1 flex h-full min-h-[22rem] w-full lg:order-2">
-              <div className="relative h-full min-h-[22rem] w-full flex-1 overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200/50 lg:min-h-0">
-                <HoverPhoto
-                  fillCell
-                  src={dutiesImage}
-                  alt="Children learning in a classroom"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                />
-              </div>
-            </div>
-        
-          </div>
-        </div>
-      
+      </motion.div>
     </section>
   );
 }

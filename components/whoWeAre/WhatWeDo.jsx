@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import {
   BookMarked,
   BookOpen,
@@ -15,7 +18,8 @@ import {
   Palette,
   Users,
 } from "lucide-react";
-import { SectionHeading } from "../ui/SectionHeading";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { EASE, DURATION } from "@/lib/motion";
 
 const heroImage = "/assets/images/whatwedo.png";
 
@@ -109,81 +113,102 @@ const objectives = [
   },
 ];
 
+const view = { once: true, amount: 0.15 };
+
 export default function WhatWeDo() {
   return (
     <section
       id="what-we-do"
-      className=" border-slate-100"
+      className="border-slate-100"
       aria-labelledby="what-we-do-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
-        <div className="space-y-5 lg:col-span-8">
-        <SectionHeading
-                eyebrow="What we do & how we do it"
-                title="Objectives of Nur and Najat Foundation (NNF)"
-                subtitle={introParagraph}
-                align="left"
-                className="max-w-none"
-              />
-          {/* <p className="text-sm font-bold uppercase tracking-wide text-slate-900">
-            What we do & how we do it:
-          </p>
-          <h2
-            id="what-we-do-heading"
-            className="heading-font text-2xl font-bold uppercase leading-tight text-slate-900 sm:text-3xl lg:text-4xl"
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+          <motion.div
+            className="space-y-5 lg:col-span-8"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={view}
+            transition={{ duration: DURATION.section, ease: EASE }}
           >
-            Objectives of Nur and Najat Foundation (NNF)
-          </h2>
-          <p className="text-base leading-relaxed text-slate-600 lg:text-lg">
-            {introParagraph}
-          </p> */}
-        </div>
+            <SectionHeading
+              eyebrow="What we do & how we do it"
+              title="Objectives of Nur and Najat Foundation (NNF)"
+              titleId="what-we-do-heading"
+              subtitle={introParagraph}
+              align="left"
+              className="max-w-none"
+            />
+          </motion.div>
 
-        <div className="lg:col-span-4">
-          <div className="group relative overflow-hidden rounded-2xl bg-slate-100 shadow-md ring-1 ring-slate-200/80">
-            <div className="relative aspect-4/5 sm:aspect-5/6 lg:aspect-4/5">
-              <Image
-                src={heroImage}
-                alt="A caregiver with a young child, representing NNF community support"
-                fill
-                className="object-cover transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.06]"
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                priority
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <p className="mt-12 max-w-4xl text-xl md:text-2xl font-semibold text-slate-900 lg:mt-16">
-        NNF is committed to achieving the following objectives:
-      </p>
-
-      <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:mt-8 lg:grid-cols-4 lg:gap-6">
-        {objectives.map((card, idx) => {
-          const Icon = card.Icon;
-          return (
-            <article
-              key={card.title}
-              className="rounded-2xl bg-linear-to-br from-[#f0f4ff] to-[#c4ecfb] p-6 shadow-sm sm:p-7"
-            >
-              <div
-                className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/80 text-primary shadow-sm ring-1 ring-primary/15"
-                aria-hidden
-              >
-                <Icon className="h-6 w-6" strokeWidth={1.75} />
+          <motion.div
+            className="lg:col-span-4"
+            initial={{ opacity: 0, scale: 1.04 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={view}
+            transition={{ duration: 0.75, ease: EASE }}
+          >
+            <div className="group relative overflow-hidden rounded-2xl bg-slate-100 shadow-md ring-1 ring-slate-200/80">
+              <div className="relative aspect-4/5 sm:aspect-5/6 lg:aspect-4/5">
+                <Image
+                  src={heroImage}
+                  alt="A caregiver with a young child, representing NNF community support"
+                  fill
+                  className="object-cover transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.06]"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  priority
+                />
               </div>
-              <h3 className="text-sm font-bold uppercase leading-snug text-slate-900 sm:text-base">
-                {idx + 1}. {card.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-[0.9375rem]">
-                {card.description}
-              </p>
-            </article>
-          );
-        })}
-      </div>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.p
+          className="mt-12 max-w-4xl text-xl font-semibold text-slate-900 md:text-2xl lg:mt-16"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={view}
+          transition={{ duration: DURATION.section, ease: EASE }}
+        >
+          NNF is committed to achieving the following objectives:
+        </motion.p>
+
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:mt-8 lg:grid-cols-4 lg:gap-6">
+          {objectives.map((card, idx) => {
+            const Icon = card.Icon;
+            return (
+              <motion.article
+                key={card.title}
+                className="rounded-2xl bg-linear-to-br from-[#f0f4ff] to-[#c4ecfb] p-6 shadow-sm sm:p-7"
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={view}
+                transition={{
+                  duration: DURATION.section,
+                  ease: EASE,
+                  delay: Math.min(idx * 0.03, 0.24),
+                }}
+                whileHover={{
+                  y: -4,
+                  boxShadow: "0 12px 32px -8px rgba(15, 23, 42, 0.12)",
+                }}
+              >
+                <div
+                  className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/80 text-primary shadow-sm ring-1 ring-primary/15"
+                  aria-hidden
+                >
+                  <Icon className="h-6 w-6" strokeWidth={1.75} />
+                </div>
+                <h3 className="text-sm font-bold uppercase leading-snug text-slate-900 sm:text-base">
+                  {idx + 1}. {card.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-[0.9375rem]">
+                  {card.description}
+                </p>
+              </motion.article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
