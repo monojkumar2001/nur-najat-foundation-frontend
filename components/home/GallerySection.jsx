@@ -44,7 +44,7 @@ export function GallerySection() {
 
   return (
     <section className="w-full bg-white py-16 sm:py-24">
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-end justify-between gap-6">
+      <div className="relative mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:flex-row sm:items-end sm:px-6 lg:px-8">
         <SectionHeading
           title="Gallery"
           subtitle="A glimpse into programs, people, and progress across our communities."
@@ -114,10 +114,11 @@ export function GallerySection() {
         </div>
       </div>
 
-      <div className="mt-8 flex justify-center w-full items-center sm:hidden">
+      <div className="mt-8 flex w-full items-center sm:hidden">
         <ButtonLink
           href="/gallery"
           variant="primary"
+          className="w-full px-6 py-2.5 text-sm normal-case"
         >
           View all
         </ButtonLink>

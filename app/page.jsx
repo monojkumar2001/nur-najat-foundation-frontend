@@ -11,7 +11,7 @@ import { JoinUsSection } from "@/components/home/JoinUsSection";
 
 function AosSection({ children, delay = 0 }) {
   return (
-    <div data-aos="fade-up" data-aos-duration="3000" data-aos-delay={delay}>
+    <div data-aos="fade-up" data-aos-duration="2000" data-aos-delay={delay}>
       {children}
     </div>
   );

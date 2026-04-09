@@ -103,7 +103,7 @@ export function LatestNews() {
   return (
     <section className="bg-[#F5F2F0] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-6">
+        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <SectionHeading
             align="left"
             title="News and updates"
@@ -189,10 +189,11 @@ export function LatestNews() {
           </Swiper>
         </div>
 
-        <div className="mt-8 flex justify-center w-full items-center sm:hidden">
+        <div className="mt-8 flex w-full items-center sm:hidden">
           <ButtonLink
             href="/blog"
             variant="primary"
+            className="w-full px-6 py-2.5 text-sm normal-case"
           >
             View all
           </ButtonLink>

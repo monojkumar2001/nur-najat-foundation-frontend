@@ -12,11 +12,11 @@ export function Hero() {
         priority
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/70 to-navy/40" />
+      <div className="absolute inset-0 bg-linear-to-r from-navy/90 via-navy/70 to-navy/40" />
 
       <div className="relative mx-auto flex max-w-7xl min-h-[85vh] flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
-          <h1 className="heading-font text-5xl font-bold uppercase leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="heading-font text-4xl font-bold uppercase leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
             Empowering Communities, Changing Lives
           </h1>
           <p className="mt-6 max-w-xl text-lg text-white/90">
