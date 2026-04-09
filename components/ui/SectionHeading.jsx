@@ -11,7 +11,7 @@ export function SectionHeading({
     <div className={`max-w-3xl ${alignClass} ${align === "center" ? "mx-auto" : ""} ${className}`}>
       {eyebrow ? (
         <p
-          className={`mb-2 text-base font-semibold uppercase tracking-widest ${
+          className={`mb-2 text-base font-semibold uppercase  ${
             light ? "text-accent" : "text-primary"
           }`}
         >

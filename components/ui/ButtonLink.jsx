@@ -8,7 +8,7 @@ const variants = {
   outline:
     "border-2 border-white text-white hover:bg-white/10 bg-transparent",
   outlineDark:
-    "border-2 border-primary text-primary hover:bg-primary hover:text-white bg-transparent",
+    "border-2 border-primary text-primary-dark hover:bg-primary hover:text-white bg-transparent",
 };
 
 export function ButtonLink({
@@ -19,7 +19,7 @@ export function ButtonLink({
   ...props
 }) {
   const base =
-    "inline-flex items-center uppercase text-white justify-center rounded-[8px] px-12 py-3.5 text-base font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+    "inline-flex items-center uppercase  justify-center rounded-[8px] px-12 py-3.5 text-base font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
   return (
     <Link
       href={href}
