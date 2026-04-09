@@ -9,8 +9,8 @@ const MissionVision = () => {
   return (
     <>
       {/* Mission & Vision */}
-      <section id="mission" className="scroll-mt-28">
-        <div className="relative overflow-hidden">
+      <section id="mission" className="scroll-mt-28 py-16 md:py-20">
+        <div className="relative overflow-hidden mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div
             className="pointer-events-none absolute inset-0 opacity-70"
   
@@ -59,18 +59,7 @@ const MissionVision = () => {
 
             <div className="lg:col-span-7">
               <div className="grid gap-6 md:grid-cols-2">
-                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-                  <h3 className="text-xl md:text-2xl font-semibold uppercase text-primary">
-                    Vision
-                  </h3>
-                  <p className="mt-3 text-muted text-lg leading-relaxed">
-                    To create a poverty-free society where every individual,
-                    especially youth and marginalized communities, has equal
-                    access to opportunities, resources, and dignity. NNF
-                    envisions empowered young leaders driving inclusive growth,
-                    social justice, and sustainable development.
-                  </p>
-                </div>
+               
 
                 <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 shadow-sm transition-shadow hover:shadow-md">
                   <h3 className="text-xl md:text-2xl font-semibold uppercase text-primary">
@@ -81,6 +70,18 @@ const MissionVision = () => {
                     Panchagarh through a holistic and sustainable approach that
                     integrates education, skill development, healthcare, and
                     economic empowerment.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+                  <h3 className="text-xl md:text-2xl font-semibold uppercase text-primary">
+                    Vision
+                  </h3>
+                  <p className="mt-3 text-muted text-lg leading-relaxed">
+                    To create a poverty-free society where every individual,
+                    especially youth and marginalized communities, has equal
+                    access to opportunities, resources, and dignity. NNF
+                    envisions empowered young leaders driving inclusive growth,
+                    social justice, and sustainable development.
                   </p>
                 </div>
               </div>

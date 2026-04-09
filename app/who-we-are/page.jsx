@@ -1,9 +1,6 @@
-import Image from "next/image";
 import { PageHeader } from "@/components/Layout/PageHeader";
-import { hero, thumb } from "@/lib/unsplash";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ButtonLink } from "@/components/ui/ButtonLink";
-import { AboutUS } from "@/components/who-we-are/AboutUS";
+import { hero } from "@/lib/unsplash";
+import { AboutUS } from "@/components/whoWeAre/AboutUS";
 import {
   GraduationCap,
   HeartPulse,
@@ -12,7 +9,9 @@ import {
   Users,
   HandHeart,
 } from "lucide-react";
-import MissionVision from "./MissionVision";
+import MissionVision from "../../components/whoWeAre/MissionVision";
+import WhatWeDo from "../../components/whoWeAre/WhatWeDo";
+import MembershipStructure from "../../components/whoWeAre/MembershipStructure";
 
 export const metadata = {
   title: "About Us | Nur and Najat Foundation",
@@ -145,36 +144,11 @@ export default function AboutPage() {
       <div className="relative -mt-6 overflow-hidden rounded-t-3xl bg-white shadow-sm ring-1 ring-slate-200/80">
         <div className="mx-auto max-w-7xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
           <AboutUS />
-
-       
-
-          <MissionVision />
-          {/* Closing */}
-          <section className="rounded-3xl bg-navy px-6 py-12 text-white sm:px-10 sm:py-14">
-            <div className="mx-auto max-w-4xl text-center">
-              <h2 className="heading-font text-2xl font-bold uppercase tracking-wide sm:text-3xl">
-                Our promise
-              </h2>
-              <p className="mt-4 text-base leading-relaxed text-white/85">
-                NNF envisions a society where poverty has no place and where
-                empowered youth lead the way toward a just, inclusive, and
-                dignified world for all.
-              </p>
-              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <ButtonLink
-                  href="/get-involved"
-                  variant="accent"
-                  className="px-8"
-                >
-                  Join as volunteer
-                </ButtonLink>
-                <ButtonLink href="/donate" variant="outline" className="px-8">
-                  Support the mission
-                </ButtonLink>
-              </div>
-            </div>
-          </section>
+        
         </div>
+        <MissionVision />
+          <WhatWeDo />
+          <MembershipStructure />
       </div>
     </>
   );

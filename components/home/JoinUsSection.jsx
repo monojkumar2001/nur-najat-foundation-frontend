@@ -3,7 +3,9 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 
 export function JoinUsSection() {
   return (
-    <section className="relative rounded-2xl   mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 overflow-hidden py-16 sm:py-24 mb-24">
+  <section id="join-us" className="scroll-mt-24 bg-slate-50 py-16 sm:py-24">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative rounded-2xl   overflow-hidden py-16 sm:py-24">
       <Image
         src="/assets/images/join.png"
         alt="Join us"
@@ -48,7 +50,9 @@ export function JoinUsSection() {
           </div>
         </div>
       </div>
+      </div>
+    </div>
     </section>
-  );
+  );  
 }
 

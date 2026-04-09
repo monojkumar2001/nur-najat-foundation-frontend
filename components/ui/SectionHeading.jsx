@@ -19,7 +19,7 @@ export function SectionHeading({
         </p>
       ) : null}
       <h2
-        className={`heading-font uppercase text-3xl line-height-10 leading-tight font-bold sm:text-3xl lg:text-4xl ${
+        className={`heading-font uppercase text-2xl line-height-10 leading-tight font-bold sm:text-3xl lg:text-4xl ${
           light ? "text-white" : "text-slate-900"
         }`}
       >
