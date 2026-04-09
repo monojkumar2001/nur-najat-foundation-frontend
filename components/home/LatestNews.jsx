@@ -111,7 +111,11 @@ export function LatestNews() {
             className="max-w-3xl"
           />
           <div className="hidden shrink-0 sm:block">
-            <ButtonLink href="/blog" variant="primary" className="px-6 py-2 text-sm normal-case">
+            <ButtonLink
+              href="/blog"
+              variant="primary"
+              className="px-6 py-2 text-sm normal-case"
+            >
               View all
             </ButtonLink>
           </div>
@@ -135,7 +139,7 @@ export function LatestNews() {
             }
             grabCursor
             breakpoints={{
-              640: { slidesPerView: 1, spaceBetween: 10 },
+              640: { slidesPerView: 2, spaceBetween: 10 },
               1024: { slidesPerView: 3, spaceBetween: 24 },
               1280: { slidesPerView: 4, spaceBetween: 24 },
             }}
@@ -166,7 +170,10 @@ export function LatestNews() {
                       </Link>
                     </h3>
                     <p className="mt-4 text-sm text-slate-600">
-                      By <span className="font-medium text-slate-800">{post.author}</span>
+                      By{" "}
+                      <span className="font-medium text-slate-800">
+                        {post.author}
+                      </span>
                     </p>
                     <p className="mt-1 text-sm text-slate-500">{post.date}</p>
                     <Link
@@ -182,8 +189,11 @@ export function LatestNews() {
           </Swiper>
         </div>
 
-        <div className="mt-8 sm:hidden">
-          <ButtonLink href="/blog" variant="outlineDark" className="w-full px-6 py-2.5 text-sm normal-case">
+        <div className="mt-8 flex justify-center w-full items-center sm:hidden">
+          <ButtonLink
+            href="/blog"
+            variant="primary"
+          >
             View all
           </ButtonLink>
         </div>

@@ -51,9 +51,13 @@ export function GallerySection() {
           align="left"
         />
         <div className="hidden shrink-0 sm:block">
-          <ButtonLink href="/gallery" variant="primary" className="px-6 py-2 text-sm normal-case">
+          <ButtonLink
+            href="/gallery"
+            variant="primary"
+            className="px-6 py-2 text-sm normal-case"
+          >
             View all
-          </ButtonLink> 
+          </ButtonLink>
         </div>
       </div>
 
@@ -110,13 +114,13 @@ export function GallerySection() {
         </div>
       </div>
 
-      <div className="mt-8 sm:hidden">
-        <Link
+      <div className="mt-8 flex justify-center w-full items-center sm:hidden">
+        <ButtonLink
           href="/gallery"
-          className="inline-flex w-full items-center justify-center rounded-md border border-neutral-200 bg-white px-4 py-2.5 text-sm font-semibold text-neutral-900 transition-colors hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          variant="primary"
         >
           View all
-        </Link>
+        </ButtonLink>
       </div>
 
       {active ? (
@@ -171,16 +175,18 @@ export function GallerySection() {
                   {active.title}
                 </p>
               </div>
-              <Link
-                href="/gallery"
-                className="inline-flex shrink-0 items-center justify-center rounded-md bg-accent px-4 py-2 text-sm font-semibold text-navy transition-colors hover:bg-accent-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                onClick={() => setActive(null)}
-              >
-                Open gallery
-              </Link>
+              <div className="flex justify-end w-full">
+                <Link
+                  href="/gallery"
+                  onClick={() => setActive(null)}
+                  className="inline-flex shrink-0 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                >
+                  Open gallery
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+          </div>
       ) : null}
     </section>
   );

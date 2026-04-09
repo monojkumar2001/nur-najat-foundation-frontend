@@ -6,9 +6,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const whoWeAreLinks = [
-  { href: "/about", label: "Our story" },
-  { href: "/about#mission", label: "Mission & vision" },
-  { href: "/about#team", label: "Our team" },
+  { href: "/who-we-are", label: "About us" },
+  { href: "/who-we-are#mission", label: "Mission & vision" },
+  { href: "/who-we-are#what", label: "What we do" },
+  { href: "/who-we-are#how", label: "How we do it" },
+  { href: "/who-we-are#work", label: "Work with us" },
+  { href: "/who-we-are#our", label: "our People" },
 ];
 
 const navItems = [
@@ -74,7 +77,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white shadow-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:gap-10 lg:px-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:gap-10 lg:px-8">
         <Link
           href="/"
           className="flex shrink-0 items-center outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
@@ -164,22 +167,26 @@ export function Header() {
         >
           <span className="sr-only">Menu</span>
           {mobileOpen ? (
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           ) : (
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           )}
         </button>
       </div>
 
-      {mobileOpen ? (
-        <div
-          id="mobile-nav"
-          className="border-t border-neutral-100 bg-white px-4 py-4 md:hidden"
-        >
+      <div
+        id="mobile-nav"
+        className={`border-t border-neutral-100 h-screen bg-white px-4 md:hidden overflow-hidden transition-[max-height,opacity,transform] duration-300 ease-out ${
+          mobileOpen
+            ? "max-h-[calc(100vh-72px)] opacity-100 translate-y-0 py-4 pointer-events-auto"
+            : "max-h-0 opacity-0 -translate-y-2 py-0 pointer-events-none"
+        }`}
+        aria-hidden={!mobileOpen}
+      >
           <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
             {navItems.map((item) => {
               if (item.href) {
@@ -188,7 +195,7 @@ export function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`rounded-md px-3 py-2.5 text-sm font-medium ${
+                    className={`rounded-md px-3 py-2.5 text-base font-medium ${
                       active ? "text-primary" : "text-neutral-900 hover:bg-neutral-50"
                     }`}
                     onClick={() => setMobileOpen(false)}
@@ -217,7 +224,7 @@ export function Header() {
                         <Link
                           key={sub.href}
                           href={sub.href}
-                          className="block rounded-md px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50 hover:text-primary"
+                          className="block rounded-md px-3 py-2 text-base text-neutral-700 hover:bg-neutral-50 hover:text-primary"
                           onClick={() => setMobileOpen(false)}
                         >
                           {sub.label}
@@ -230,14 +237,13 @@ export function Header() {
             })}
             <Link
               href="/donate"
-              className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-[#f5a623] px-6 py-3 text-sm font-bold uppercase tracking-wide text-white hover:bg-[#e09010]"
+              className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-[#f5a623] px-6 py-3 text-base font-bold uppercase tracking-wide text-white hover:bg-[#e09010]"
               onClick={() => setMobileOpen(false)}
             >
               Donate
             </Link>
           </nav>
-        </div>
-      ) : null}
+      </div>
     </header>
   );
 }

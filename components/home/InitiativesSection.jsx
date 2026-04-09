@@ -91,7 +91,7 @@ export function InitiativesSection() {
           ))}
         </div>
 
-        <div className="mx-auto mt-12 w-[80%] max-w-6xl sm:mt-16">
+        <div className="mx-auto mt-12 w-full md:w-[80%] max-w-6xl sm:mt-16">
           <div className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-slate-200/60">
             <div className="relative aspect-video w-full max-h-[min(70vh,560px)] sm:aspect-[16/9]">
               <Image
