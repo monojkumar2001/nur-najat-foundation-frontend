@@ -23,10 +23,10 @@ export default function GalleryPage() {
           <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
             {galleryGrid.map((src, i) => (
               <div
-                key={src}
+                key={`${src}-${i}`}
                 className="group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl bg-slate-200 shadow-md ring-1 ring-slate-200/80"
               >
-                <div className="relative aspect-[4/3]">
+                <div className="relative aspect-4/3">
                   <Image
                     src={src}
                     alt={`Foundation program photo ${i + 1}`}

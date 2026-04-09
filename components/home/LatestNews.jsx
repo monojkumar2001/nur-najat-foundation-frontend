@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 
 import "swiper/css";
 
@@ -102,12 +103,19 @@ export function LatestNews() {
   return (
     <section className="bg-[#F5F2F0] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          align="left"
-          title="News and updates"
-          subtitle="Stories from programs, partners, and communities—swipe or drag to explore; autoplay pauses on hover."
-          className="max-w-3xl"
-        />
+        <div className="flex items-center justify-between gap-6">
+          <SectionHeading
+            align="left"
+            title="News and updates"
+            subtitle="Stories from programs, partners, and communities—swipe or drag to explore; autoplay pauses on hover."
+            className="max-w-3xl"
+          />
+          <div className="hidden shrink-0 sm:block">
+            <ButtonLink href="/blog" variant="primary" className="px-6 py-2 text-sm normal-case">
+              View all
+            </ButtonLink>
+          </div>
+        </div>
 
         <div className="mt-12 latest-news-swiper [-webkit-tap-highlight-color:transparent]">
           <Swiper
@@ -134,11 +142,11 @@ export function LatestNews() {
             className="pb-1"
           >
             {posts.map((post) => (
-              <SwiperSlide key={post.id} className="!h-auto">
+              <SwiperSlide key={post.id} className="h-auto!">
                 <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200/90 bg-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-xl">
                   <Link
                     href={post.href}
-                    className="relative aspect-[16/10] block overflow-hidden rounded-t-lg"
+                    className="relative aspect-16/10 block overflow-hidden rounded-t-lg"
                   >
                     <Image
                       src={post.image}
@@ -172,6 +180,12 @@ export function LatestNews() {
               </SwiperSlide>
             ))}
           </Swiper>
+        </div>
+
+        <div className="mt-8 sm:hidden">
+          <ButtonLink href="/blog" variant="outlineDark" className="w-full px-6 py-2.5 text-sm normal-case">
+            View all
+          </ButtonLink>
         </div>
       </div>
     </section>

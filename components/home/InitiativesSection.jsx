@@ -66,7 +66,7 @@ export function InitiativesSection() {
           <h2 className="heading-font text-3xl font-bold uppercase tracking-wide text-slate-900 sm:text-4xl">
             Our initiatives
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-slate-600">
             From scholarships to daily care, our programs meet urgent needs while
             building long-term strength in the communities we serve.
           </p>
@@ -84,7 +84,7 @@ export function InitiativesSection() {
               <h3 className="heading-font mt-5 text-sm font-bold uppercase tracking-wide text-slate-900 sm:text-base">
                 {title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              <p className="mt-3 text-base leading-relaxed text-slate-600">
                 {description}
               </p>
             </article>

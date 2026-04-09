@@ -6,7 +6,8 @@ import { StatsBar } from "@/components/home/StatsBar";
 import { InitiativesSection } from "@/components/home/InitiativesSection";
 import { GetInvolvedSection } from "@/components/home/GetInvolvedSection";
 import { LatestNews } from "@/components/home/LatestNews";
-import { TestimonialSection } from "@/components/home/TestimonialSection";
+import { GallerySection } from "@/components/home/GallerySection";
+import { JoinUsSection } from "@/components/home/JoinUsSection";
 
 function AosSection({ children, delay = 0 }) {
   return (
@@ -41,9 +42,14 @@ export default function Home() {
       <AosSection delay={240}>
         <LatestNews />
       </AosSection>
-      <AosSection delay={80}>
-        <TestimonialSection />
+
+      <AosSection delay={240}>
+        <GallerySection />
       </AosSection>
+      <AosSection delay={240}>
+        <JoinUsSection />
+      </AosSection>
+  
     </>
   );
 }
