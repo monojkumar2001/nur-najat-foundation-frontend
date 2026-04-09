@@ -1,6 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
 import { PageHeader } from "@/components/Layout/PageHeader";
+import { BlogPostGrid } from "@/components/blog/BlogPostGrid";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
@@ -48,45 +47,7 @@ export default function BlogPage() {
 
       <div className="relative -mt-6 overflow-hidden rounded-t-3xl bg-white pb-16 pt-10 shadow-sm ring-1 ring-slate-200/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ul className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <li key={post.slug}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-                  <Link href={`/blog/${post.slug}`} className="relative aspect-[16/10] block overflow-hidden">
-                    <Image
-                      src={post.image}
-                      alt=""
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(min-width: 1024px) 33vw, 50vw"
-                    />
-                  </Link>
-                  <div className="flex flex-1 flex-col p-6">
-                    <time className="text-xs font-medium uppercase tracking-wide text-slate-500">
-                      {post.date}
-                    </time>
-                    <h2 className="heading-font mt-3 text-lg font-bold text-slate-900">
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="hover:text-primary"
-                      >
-                        {post.title}
-                      </Link>
-                    </h2>
-                    <p className="mt-3 flex-1 text-sm text-slate-600 leading-relaxed">
-                      {post.excerpt}
-                    </p>
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="mt-4 inline-flex text-sm font-semibold text-primary"
-                    >
-                      Continue reading →
-                    </Link>
-                  </div>
-                </article>
-              </li>
-            ))}
-          </ul>
+          <BlogPostGrid posts={posts} />
         </div>
       </div>
     </>

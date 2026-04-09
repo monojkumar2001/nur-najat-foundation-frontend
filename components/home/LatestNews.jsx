@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -147,7 +148,14 @@ export function LatestNews() {
           >
             {posts.map((post) => (
               <SwiperSlide key={post.id} className="h-auto!">
-                <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200/90 bg-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-xl">
+                <motion.article
+                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-200/90 bg-white shadow-md ring-1 ring-slate-200/50"
+                  whileHover={{
+                    y: -5,
+                    boxShadow: "0 16px 40px -12px rgba(15, 23, 42, 0.14)",
+                  }}
+                  transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+                >
                   <Link
                     href={post.href}
                     className="relative aspect-16/10 block overflow-hidden rounded-t-lg"
@@ -183,7 +191,7 @@ export function LatestNews() {
                       Read more →
                     </Link>
                   </div>
-                </article>
+                </motion.article>
               </SwiperSlide>
             ))}
           </Swiper>

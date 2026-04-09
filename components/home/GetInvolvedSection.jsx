@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import {
   ArrowRight,
@@ -36,7 +39,11 @@ export function GetInvolvedSection() {
         />
 
         <div className="mt-14 grid gap-8 lg:grid-cols-2 lg:gap-10">
-          <article className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-md transition-shadow hover:shadow-lg">
+          <motion.article
+            className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-md transition-shadow hover:shadow-lg"
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             <div className="relative aspect-[16/10] shrink-0 overflow-hidden">
               <Image
                 src={thumb.volunteer}
@@ -87,9 +94,13 @@ export function GetInvolvedSection() {
                 <ArrowRight className="h-4 w-4" strokeWidth={2.5} aria-hidden />
               </ButtonLink>
             </div>
-          </article>
+          </motion.article>
 
-          <article className="group flex flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white shadow-xl ring-1 ring-white/10">
+          <motion.article
+            className="group flex flex-col overflow-hidden rounded-2xl bg-linear-to-br from-primary to-primary-dark text-white shadow-xl ring-1 ring-white/10"
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
+          >
       
             <div className="flex flex-1 flex-col p-6 sm:p-8">
               <div className="flex items-center gap-2 text-white/95">
@@ -177,7 +188,7 @@ export function GetInvolvedSection() {
                 </Link>
               </div>
             </div>
-          </article>
+          </motion.article>
         </div>
       </div>
     </section>

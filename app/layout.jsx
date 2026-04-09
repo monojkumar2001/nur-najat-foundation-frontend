@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Layout/Header";
 import { Footer } from "@/components/Layout/Footer";
+import { Providers } from "@/components/Providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,11 +22,13 @@ export default function RootLayout({ children }) {
         className={`${inter.variable} antialiased text-foreground font-sans`}
         suppressHydrationWarning
       >
-        <Header />
-        <main className="min-h-screen bg-slate-50 text-slate-900 antialiased">
-          {children}
-        </main>
-        <Footer />
+        <Providers>
+          <Header />
+          <main className="min-h-screen bg-slate-50 text-slate-900 antialiased">
+            {children}
+          </main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

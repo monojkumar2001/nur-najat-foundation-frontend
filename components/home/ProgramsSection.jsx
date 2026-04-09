@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { CircleCheckBig } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { thumb } from "@/lib/unsplash";
@@ -45,12 +48,20 @@ export function ProgramsSection() {
         />
 
         <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {programs.map((p) => (
-            <article
+          {programs.map((p, i) => (
+            <motion.article
               key={p.title}
-              className="group cursor-pointer flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-xl"
+              className="group cursor-pointer flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-md ring-1 ring-slate-200/50"
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.45, delay: i * 0.07, ease: [0.25, 0.1, 0.25, 1] }}
+              whileHover={{
+                y: -6,
+                boxShadow: "0 20px 40px -12px rgba(15, 23, 42, 0.14)",
+              }}
             >
-              <div className="relative aspect-[16/10] overflow-hidden">
+              <div className="relative aspect-16/10 overflow-hidden">
                 <Image
                   src={p.image}
                   alt=""
@@ -85,7 +96,7 @@ export function ProgramsSection() {
                   Learn more →
                 </Link>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>

@@ -19,7 +19,7 @@ export function ButtonLink({
   ...props
 }) {
   const base =
-    "inline-flex items-center uppercase  justify-center rounded-[8px] px-12 py-3.5 text-base font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+    "inline-flex items-center uppercase justify-center rounded-[8px] px-12 py-3.5 text-base font-medium transition-all duration-200 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-colors hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:shadow-sm motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none";
   return (
     <Link
       href={href}

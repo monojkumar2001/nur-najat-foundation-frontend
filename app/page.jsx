@@ -1,4 +1,3 @@
-import { AosInit } from "@/components/AosInit";
 import { Hero } from "@/components/home/Hero";
 import { AboutSection } from "@/components/home/AboutSection";
 import { ProgramsSection } from "@/components/home/ProgramsSection";
@@ -8,48 +7,36 @@ import { GetInvolvedSection } from "@/components/home/GetInvolvedSection";
 import { LatestNews } from "@/components/home/LatestNews";
 import { GallerySection } from "@/components/home/GallerySection";
 import { JoinUsSection } from "@/components/home/JoinUsSection";
-
-function AosSection({ children, delay = 0 }) {
-  return (
-    <div data-aos="fade-up" data-aos-duration="2000" data-aos-delay={delay}>
-      {children}
-    </div>
-  );
-}
+import { Reveal } from "@/components/motion/Reveal";
 
 export default function Home() {
   return (
     <>
-      <AosInit />
-      <AosSection delay={0}>
-        <Hero />
-      </AosSection>
-      <AosSection delay={80}>
+      <Hero />
+      <Reveal delay={0}>
         <AboutSection />
-      </AosSection>
-      <AosSection delay={160}>
+      </Reveal>
+      <Reveal delay={0.04}>
         <ProgramsSection />
-      </AosSection>
-      <AosSection delay={240}>
+      </Reveal>
+      <Reveal delay={0.04}>
         <StatsBar />
-      </AosSection>
-      <AosSection delay={80}>
+      </Reveal>
+      <Reveal delay={0.04}>
         <InitiativesSection />
-      </AosSection>
-      <AosSection delay={160}>
+      </Reveal>
+      <Reveal delay={0.04}>
         <GetInvolvedSection />
-      </AosSection>
-      <AosSection delay={240}>
+      </Reveal>
+      <Reveal delay={0.04}>
         <LatestNews />
-      </AosSection>
-
-      <AosSection delay={240}>
+      </Reveal>
+      <Reveal delay={0.04}>
         <GallerySection />
-      </AosSection>
-      <AosSection delay={240}>
+      </Reveal>
+      <Reveal delay={0.04}>
         <JoinUsSection />
-      </AosSection>
-  
+      </Reveal>
     </>
   );
 }
