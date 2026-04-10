@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowUpRight, Calendar } from "lucide-react";
 import { EASE, DURATION } from "@/lib/motion";
 
 export function BlogPostGrid({ posts }) {
@@ -41,9 +42,10 @@ export function BlogPostGrid({ posts }) {
               />
             </Link>
             <div className="flex flex-1 flex-col p-6">
-              <time className="text-xs font-medium uppercase tracking-wide text-slate-500">
-                {post.date}
-              </time>
+              <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-slate-500">
+                <Calendar className="h-4 w-4 text-primary/70" aria-hidden />
+                <time>{post.date}</time>
+              </div>
               <h2 className="heading-font mt-3 text-lg font-bold text-slate-900">
                 <Link
                   href={`/blog/${post.slug}`}
@@ -57,9 +59,13 @@ export function BlogPostGrid({ posts }) {
               </p>
               <Link
                 href={`/blog/${post.slug}`}
-                className="mt-4 inline-flex text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
               >
-                Continue reading →
+               Read now
+                <ArrowUpRight
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden
+                />
               </Link>
             </div>
           </motion.article>
