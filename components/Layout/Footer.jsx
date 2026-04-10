@@ -95,7 +95,7 @@ export function Footer() {
                     key={s.label}
                     href={s.href}
                     aria-label={s.label}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/75 ring-1 ring-white/10 transition-colors hover:bg-primary hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    className="inline-flex h-9 w-9 items-center duration-300 ease-in-out justify-center rounded-full bg-white/10 text-white/75 ring-1 ring-white/10 transition-colors hover:bg-primary hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                   >
                     {s.svg}
                   </Link>
@@ -137,7 +137,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/55 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/55 sm:flex-row">
           <p>All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-white">

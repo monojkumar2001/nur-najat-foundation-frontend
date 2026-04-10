@@ -92,11 +92,11 @@ export function Header() {
           />
         </Link>
 
-        <div className="hidden min-w-0 flex-1 items-center justify-center gap-6 md:flex lg:gap-10 xl:gap-12">
+        <div className="hidden min-w-0 flex-1 items-center justify-end gap-6 md:flex lg:gap-10 xl:gap-12">
           <nav
-          className="flex flex-1 items-center justify-center gap-6 lg:gap-8"
-          aria-label="Main navigation"
-        >
+            className="flex items-center justify-end gap-6 lg:gap-8"
+            aria-label="Main navigation"
+          >
           {navItems.map((item) => {
             if (item.href) {
               const active = isNavActive(pathname, item.href, item.end);
@@ -146,12 +146,12 @@ export function Header() {
               </div>
             );
           })}
-        </nav>
+          </nav>
 
-        <div className="hidden shrink-0 md:block">
-          <Link
-            href="/donate"
-            className="inline-flex items-center justify-center rounded-[8px] bg-[#f5a623] px-12  py-4 text-base font-medium uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#e09010] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          <div className="hidden shrink-0 md:block">
+            <Link
+              href="/donate"
+              className="inline-flex items-center justify-center rounded-[8px] bg-[#f5a623] px-12 py-4 text-base font-medium uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#e09010] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               Donate
             </Link>
