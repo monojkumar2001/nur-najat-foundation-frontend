@@ -76,8 +76,8 @@ export function Header() {
   const linkActive = "text-primary";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white shadow-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:gap-10 lg:px-8">
+    <header className="sticky top-0 z-50 w-full max-w-[100vw] border-b border-neutral-200 bg-white pt-[env(safe-area-inset-top,0px)] shadow-sm">
+      <div className="mx-auto flex max-w-7xl min-w-0 items-center justify-between gap-3 px-4 py-3 sm:gap-6 sm:px-6 lg:gap-10 lg:px-8">
         <Link
           href="/"
           className="flex shrink-0 items-center outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
@@ -92,9 +92,9 @@ export function Header() {
           />
         </Link>
 
-      <div className="flex items-center justify-center gap-6 lg:gap-10 xl:gap-12 md:flex">
-      <nav
-          className="hidden flex-1 items-center justify-center gap-6 lg:gap-8 md:flex"
+        <div className="hidden min-w-0 flex-1 items-center justify-center gap-6 md:flex lg:gap-10 xl:gap-12">
+          <nav
+          className="flex flex-1 items-center justify-center gap-6 lg:gap-8"
           aria-label="Main navigation"
         >
           {navItems.map((item) => {
@@ -180,10 +180,10 @@ export function Header() {
 
       <div
         id="mobile-nav"
-        className={`border-t border-neutral-100 h-screen bg-white px-4 md:hidden overflow-hidden transition-[max-height,opacity,transform] duration-300 ease-out ${
+        className={`overflow-hidden border-t border-neutral-100 bg-white px-4 transition-[max-height,opacity,transform] duration-300 ease-out md:hidden ${
           mobileOpen
-            ? "max-h-[calc(100vh-72px)] opacity-100 translate-y-0 py-4 pointer-events-auto"
-            : "max-h-0 opacity-0 -translate-y-2 py-0 pointer-events-none"
+            ? "pointer-events-auto max-h-[calc(100dvh-5rem-env(safe-area-inset-top,0px))] translate-y-0 py-4 opacity-100 overflow-y-auto"
+            : "pointer-events-none max-h-0 -translate-y-2 py-0 opacity-0"
         }`}
         aria-hidden={!mobileOpen}
       >

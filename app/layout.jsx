@@ -17,17 +17,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="max-w-[100vw]" suppressHydrationWarning>
       <body
-        className={`${inter.variable} antialiased text-foreground font-sans`}
+        className={`${inter.variable} max-w-[100vw] antialiased text-foreground font-sans`}
         suppressHydrationWarning
       >
         <Providers>
           <Header />
-          <main className="min-h-screen bg-slate-50 text-slate-900 antialiased">
-            {children}
-          </main>
-          <Footer />
+          <div className="min-w-0 max-w-[100vw] overflow-x-clip">
+            <main className="min-h-screen min-w-0 bg-slate-50 text-slate-900 antialiased">
+              {children}
+            </main>
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>

@@ -39,9 +39,9 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="bg-navy text-white">
-      <div className="mx-auto max-w-7xl px-4 pt-14 pb-8 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
+    <footer className="min-w-0 bg-navy text-white">
+      <div className="mx-auto max-w-7xl min-w-0 px-4 pt-14 pb-8 sm:px-6 lg:px-8">
+        <div className="grid min-w-0 gap-12 lg:grid-cols-12 lg:items-start">
           {/* Left: brand + contact */}
           <div className="lg:col-span-4">
             <p className="heading-font text-xl font-bold">Nur and Najat Foundation</p>
@@ -105,14 +105,14 @@ export function Footer() {
           </div>
 
           {/* Right: subscribe */}
-          <div className="lg:col-span-5">
+          <div className="min-w-0 lg:col-span-5">
             <p className="text-xl font-semibold uppercase tracking-tight sm:text-2xl">
               Subscribe to get latest
               <br />
               updates and news
             </p>
             <form
-              className="mt-6 flex w-full max-w-xl items-center rounded-lg bg-white/8 p-2 ring-1 ring-white/10"
+              className="mt-6 flex w-full max-w-xl min-w-0 flex-col gap-2 rounded-lg bg-white/8 p-2 ring-1 ring-white/10 sm:flex-row sm:items-stretch"
               action="#"
               method="post"
             >
@@ -125,11 +125,11 @@ export function Footer() {
                 name="email"
                 placeholder="Yourmail@gmail.com"
                 autoComplete="email"
-                className="min-w-0 flex-1 bg-transparent px-3 py-2 text-sm text-white placeholder:text-white/45 outline-none"
+                className="min-h-11 min-w-0 w-full flex-1 rounded-md bg-transparent px-3 py-2 text-sm text-white placeholder:text-white/45 outline-none"
               />
               <button
                 type="submit"
-                className="rounded-md bg-primary px-6 py-2 text-xs font-semibold uppercase tracking-widest text-white transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="min-h-11 w-full shrink-0 whitespace-nowrap rounded-md bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto sm:px-6"
               >
                 Subscribe
               </button>
