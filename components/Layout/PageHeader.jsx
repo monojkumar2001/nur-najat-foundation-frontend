@@ -26,7 +26,7 @@ const line = {
 export function PageHeader({ eyebrow, title, description, image, imageAlt = "" }) {
   if (image) {
     return (
-      <header className="relative min-h-[260px] w-full sm:min-h-[340px] lg:min-h-[380px]">
+      <header className="relative z-0 min-h-[260px] w-full sm:min-h-[340px] lg:min-h-[380px]">
         <motion.div
           className="absolute inset-0"
           initial={{ scale: 1.04, opacity: 0 }}

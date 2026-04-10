@@ -94,7 +94,7 @@ export function Header() {
 
       <div className="flex items-center justify-center gap-6 lg:gap-10 xl:gap-12 md:flex">
       <nav
-          className="hidden flex-1 items-center justify-center gap-6 lg:gap-10 xl:gap-12 md:flex"
+          className="hidden flex-1 items-center justify-center gap-6 lg:gap-8 md:flex"
           aria-label="Main navigation"
         >
           {navItems.map((item) => {

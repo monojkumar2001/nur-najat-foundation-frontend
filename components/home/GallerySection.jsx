@@ -52,7 +52,7 @@ export function GallerySection() {
         />
         <div className="hidden shrink-0 sm:block">
           <ButtonLink
-            href="/gallery"
+            href="/photography"
             variant="primary"
             className="px-6 py-2 text-sm normal-case"
           >

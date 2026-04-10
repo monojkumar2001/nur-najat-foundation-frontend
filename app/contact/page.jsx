@@ -1,8 +1,9 @@
-import Image from "next/image";
 import { PageHeader } from "@/components/Layout/PageHeader";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
+import { contactSite } from "@/lib/contact";
 import { hero } from "@/lib/unsplash";
+import { ExternalLink, Mail, MapPin, Phone, Share2 } from "lucide-react";
 
 export const metadata = {
   title: "Contact | Nur and Najat Foundation",
@@ -10,6 +11,8 @@ export const metadata = {
 };
 
 export default function ContactPage() {
+  const { addressLines, mapEmbedUrl, mapOpenUrl } = contactSite;
+
   return (
     <>
       <PageHeader
@@ -20,82 +23,139 @@ export default function ContactPage() {
         imageAlt="Contact and communication"
       />
 
-      <div className="relative -mt-6 overflow-hidden rounded-t-3xl bg-white shadow-sm ring-1 ring-slate-200/80">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-stretch lg:gap-16 lg:px-8">
-          <Reveal className="flex flex-col" y={16}>
-            <div className="relative mb-10 hidden overflow-hidden rounded-2xl shadow-lg ring-1 ring-slate-200/60 lg:block">
-              <div className="relative aspect-4/3">
-                <Image
-                  src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&w=900&q=80"
-                  alt=""
-                  fill
-                  className="object-cover transition-transform duration-500 hover:scale-105 motion-reduce:hover:scale-100"
-                  sizes="50vw"
-                />
-              </div>
-            </div>
-            <h2 className="heading-font text-xl font-bold text-slate-900">
-              Contact details
-            </h2>
-            <ul className="mt-6 space-y-4 text-slate-600">
-              <li>
-                <span className="font-semibold text-slate-900">Address:</span>
-                <br />
-                123 Mission Street, City, ST 00000
-              </li>
-              <li>
-                <span className="font-semibold text-slate-900">Phone:</span>{" "}
-                <a
-                  href="tel:+15551234567"
-                  className="text-primary underline-offset-2 hover:underline"
-                >
-                  +1 (555) 123-4567
-                </a>
-              </li>
-              <li>
-                <span className="font-semibold text-slate-900">Email:</span>{" "}
-                <a
-                  href="mailto:hello@nur-najat.org"
-                  className="text-primary underline-offset-2 hover:underline"
-                >
-                  hello@nur-najat.org
-                </a>
-              </li>
-            </ul>
-            <h2 className="heading-font mt-10 text-xl font-bold text-slate-900">
-              Social
-            </h2>
-            <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
-              <li>
-                <a href="#" className="text-primary underline-offset-2 hover:underline">
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-primary underline-offset-2 hover:underline">
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-primary underline-offset-2 hover:underline">
-                  YouTube
-                </a>
-              </li>
-            </ul>
+      <div className="relative z-10 -mt-6 overflow-hidden rounded-t-3xl border-x border-b border-slate-200/70 bg-linear-to-b from-slate-50/90 via-white to-white shadow-[0_12px_40px_-12px_rgba(15,23,42,0.12)]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+          <Reveal className="mx-auto mb-12 max-w-2xl text-center lg:mx-0 lg:text-left" y={14}>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              Visit or write
+            </p>
+            <p className="mt-3 text-pretty text-base leading-relaxed text-slate-600 sm:text-lg">
+              Drop by during office hours, open the map for directions, or use the
+              form — we typically reply within two business days.
+            </p>
           </Reveal>
-          <Reveal delay={0.06} y={16}>
-            <div className="h-full rounded-2xl border border-slate-200/90 bg-linear-to-b from-white to-slate-50/80 p-6 shadow-lg ring-1 ring-slate-200/50 sm:p-8">
-              <h2 className="heading-font text-xl font-bold text-slate-900">
-                Send a message
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600 sm:text-base">
-                We typically reply within two business days.
-              </p>
-              <div className="mt-6">
-                <ContactForm />
+
+          <div className="grid gap-10 lg:grid-cols-5 lg:gap-12 lg:items-start">
+            <Reveal className="lg:col-span-3" y={18}>
+              <div className="space-y-6">
+                <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-lg ring-1 ring-slate-200/55">
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-4 py-3.5 sm:px-5">
+                    <span className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
+                      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <MapPin className="h-4 w-4" aria-hidden />
+                      </span>
+                      Our location
+                    </span>
+                    <a
+                      href={mapOpenUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                    >
+                      Open in Maps
+                      <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+                    </a>
+                  </div>
+                  <div className="relative aspect-video w-full bg-slate-100 sm:min-h-[260px]">
+                    <iframe
+                      title="Office location on Google Maps"
+                      src={mapEmbedUrl}
+                      className="absolute inset-0 h-full w-full border-0"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      allowFullScreen
+                    />
+                  </div>
+                  <div className="bg-linear-to-br from-slate-50/90 to-white px-4 py-4 sm:px-5 sm:py-5">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                      Address
+                    </p>
+                    <p className="mt-1.5 text-sm font-medium leading-relaxed text-slate-800">
+                      {addressLines.map((line) => (
+                        <span key={line} className="block">
+                          {line}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <a
+                    href={contactSite.phoneHref}
+                    className="group flex gap-4 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-sm ring-1 ring-slate-100 transition hover:border-primary/25 hover:shadow-md hover:ring-primary/10 sm:p-5"
+                  >
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition group-hover:bg-primary/15">
+                      <Phone className="h-5 w-5" aria-hidden />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                        Phone
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-slate-900 group-hover:text-primary sm:text-base">
+                        {contactSite.phoneDisplay}
+                      </p>
+                    </div>
+                  </a>
+                  <a
+                    href={contactSite.emailHref}
+                    className="group flex gap-4 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-sm ring-1 ring-slate-100 transition hover:border-primary/25 hover:shadow-md hover:ring-primary/10 sm:p-5"
+                  >
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition group-hover:bg-primary/15">
+                      <Mail className="h-5 w-5" aria-hidden />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                        Email
+                      </p>
+                      <p className="mt-1 break-all text-sm font-semibold text-slate-900 group-hover:text-primary sm:text-base">
+                        {contactSite.emailDisplay}
+                      </p>
+                    </div>
+                  </a>
+                </div>
+
+                <div className="rounded-2xl border border-slate-200/80 bg-white/80 px-4 py-5 shadow-sm ring-1 ring-slate-100 sm:px-6">
+                  <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
+                    <Share2 className="h-4 w-4 text-primary" aria-hidden />
+                    Social
+                  </p>
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {contactSite.socialLinks.map((s) => (
+                      <li key={s.label}>
+                        <a
+                          href={s.href}
+                          className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-primary/30 hover:text-primary"
+                        >
+                          {s.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+
+            <Reveal className="lg:col-span-2" delay={0.08} y={18}>
+              <div className="lg:sticky lg:top-28">
+                <div className="rounded-2xl border border-slate-200/90 bg-linear-to-b from-white to-slate-50/90 p-6 shadow-xl ring-1 ring-slate-200/55 sm:p-8">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                    Message us
+                  </p>
+                  <h2 className="heading-font mt-2 text-xl font-bold text-slate-900 sm:text-2xl">
+                    Send a message
+                  </h2>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600 sm:text-base">
+                    Partnerships, volunteering, press — tell us what you need and
+                    we&apos;ll route it to the right person.
+                  </p>
+                  <div className="mt-6">
+                    <ContactForm />
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </div>
     </>

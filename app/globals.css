@@ -53,6 +53,12 @@ body {
   outline-offset: 2px;
 }
 
+/* Forms that use border + ring for focus — skip global outline to avoid double ring */
+.nnf-form-focus :where(input, textarea, select, button):focus-visible {
+  outline: none;
+  outline-offset: 0;
+}
+
 /* Reusable elevated surfaces (NGO cards / panels) */
 .surface-card {
   border-radius: 1rem;

@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/Layout/PageHeader";
-import { PressPostGrid } from "@/components/press/PressPostGrid";
+import { PressListing } from "@/components/press/PressListing";
 import { hero } from "@/lib/unsplash";
 import { pressItems } from "@/lib/press";
 
@@ -15,6 +15,9 @@ export default function PressCentrePage() {
     date: p.date,
     excerpt: p.excerpt,
     image: p.image,
+    category: p.category,
+    location: p.location,
+    topic: p.category,
   }));
 
   return (
@@ -27,12 +30,11 @@ export default function PressCentrePage() {
         imageAlt="Press and announcements"
       />
 
-      <div className="relative -mt-6 overflow-hidden rounded-t-3xl bg-white pb-16 pt-10 shadow-sm ring-1 ring-slate-200/80">
+      <div className="relative z-10 -mt-6 overflow-hidden rounded-t-3xl border-x border-b border-slate-200/70 bg-white pb-16 pt-10 shadow-[0_12px_40px_-12px_rgba(15,23,42,0.12)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <PressPostGrid posts={posts} />
+          <PressListing posts={posts} />
         </div>
       </div>
     </>
   );
 }
-

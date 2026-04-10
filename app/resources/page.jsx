@@ -44,7 +44,8 @@ export default function ResourcesPage() {
         imageAlt="Books and learning materials"
       />
 
-      <div className="relative -mt-6 overflow-hidden rounded-t-3xl bg-white pb-16 pt-10 shadow-sm ring-1 ring-slate-200/80">
+      <div className="relative -mt-6 overflow-hidden rounded-t-3xl bg-white pb-16 pt-10 
+      ">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ul className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {items.map((item) => (

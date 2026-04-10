@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/Layout/PageHeader";
-import { EmergencyPostGrid } from "@/components/emergencies/EmergencyPostGrid";
+import { EmergencyListing } from "@/components/emergencies/EmergencyListing";
 import { emergencyItems } from "@/lib/emergencies";
 import { hero } from "@/lib/unsplash";
 
@@ -18,6 +18,8 @@ export default function EmergenciesPage() {
     image: p.image,
     category: p.category,
     author: p.author,
+    location: p.location,
+    topic: p.topic,
   }));
 
   return (
@@ -30,9 +32,9 @@ export default function EmergenciesPage() {
         imageAlt="Emergency response and community support"
       />
 
-      <div className="relative -mt-6 overflow-hidden rounded-t-3xl bg-white pb-16 pt-10 shadow-sm ring-1 ring-slate-200/80">
+      <div className="relative z-10 -mt-6 overflow-hidden rounded-t-3xl border-x border-b border-slate-200/70 bg-white pb-16 pt-10 shadow-[0_12px_40px_-12px_rgba(15,23,42,0.12)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <EmergencyPostGrid posts={posts} />
+          <EmergencyListing posts={posts} />
         </div>
       </div>
     </>

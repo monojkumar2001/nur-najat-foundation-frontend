@@ -4,12 +4,7 @@ const quickLinks = [
   { href: "/about", label: "About us" },
   { href: "/programs", label: "Programs" },
   { href: "/get-involved", label: "Get involved" },
-  { href: "/resources", label: "Resources" },
-  { href: "/blog", label: "Blog" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/events", label: "Events" },
-  { href: "/contact", label: "Contact" },
-  { href: "/donate", label: "Donate" },
+  { href: "/contact", label: "Contact us" },
 ];
 
 const socials = [
@@ -78,7 +73,7 @@ export function Footer() {
               Quicklinks
             </p>
             <ul className="mt-4 space-y-2">
-              {quickLinks.slice(0, 4).map((l) => (
+              {quickLinks.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
@@ -96,16 +91,14 @@ export function Footer() {
               </p>
               <div className="mt-3 flex items-center gap-3">
                 {socials.map((s) => (
-                  <a
+                    <Link
                     key={s.label}
                     href={s.href}
                     aria-label={s.label}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/75 ring-1 ring-white/10 transition-colors hover:bg-white/15 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                    target="_blank"
-                    rel="noreferrer"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/75 ring-1 ring-white/10 transition-colors hover:bg-primary hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                   >
                     {s.svg}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

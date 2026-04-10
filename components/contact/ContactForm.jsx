@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-
 const inputClass =
-  "mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition-shadow placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/25";
+  "mt-1.5 w-full rounded-md border border-slate-300 bg-white px-4 py-2.5 text-slate-900 " +
+  "placeholder:text-slate-400 transition-shadow " +
+  "outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
 
 export function ContactForm() {
   const [sent, setSent] = useState(false);
