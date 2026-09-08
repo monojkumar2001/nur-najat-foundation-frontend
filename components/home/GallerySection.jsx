@@ -116,7 +116,7 @@ export function GallerySection() {
 
       <div className="mt-8 flex w-full items-center sm:hidden">
         <ButtonLink
-          href="/gallery"
+          href="/photography"
           variant="primary"
           className="w-full px-6 py-2.5 text-sm normal-case"
         >
