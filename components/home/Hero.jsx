@@ -66,7 +66,7 @@ export function Hero() {
             variants={item}
             className="mt-8 flex flex-wrap gap-4"
           >
-            <ButtonLink href="/about" variant="primary" className="px-8 py-3">
+            <ButtonLink href="/get-involved" variant="primary" className="px-8 py-3">
               Get Involved
             </ButtonLink>
             <ButtonLink href="/donate" variant="outline" className="px-8 py-3">

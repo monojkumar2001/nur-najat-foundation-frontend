@@ -3,11 +3,12 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
 import { contactSite } from "@/lib/contact";
 import { hero } from "@/lib/unsplash";
-import { ExternalLink, Mail, MapPin, Phone, Share2 } from "lucide-react";
+import { Clock, ExternalLink, Mail, MapPin, Phone, Share2 } from "lucide-react";
 
 export const metadata = {
   title: "Contact | Nur and Najat Foundation",
-  description: "Contact the foundation for inquiries and partnerships.",
+  description:
+    "Contact NNF with questions, partnership enquiries, volunteer interest, or messages about our programmes.",
 };
 
 export default function ContactPage() {
@@ -18,24 +19,45 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Get in touch"
-        description="Questions about programs, partnerships, or media — we read every message."
+        description="We welcome questions, ideas, partnership enquiries, volunteer interest and messages from communities, supporters and organizations."
         image={hero.contact}
         imageAlt="Contact and communication"
       />
 
       <div className="relative z-10 -mt-6 overflow-hidden rounded-t-3xl border-x border-b border-slate-200/70 bg-linear-to-b from-slate-50/90 via-white to-white shadow-[0_12px_40px_-12px_rgba(15,23,42,0.12)]">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-          <Reveal className="mx-auto mb-12 max-w-2xl text-center lg:mx-0 lg:text-left" y={14}>
+          <Reveal className="mb-12 w-full" y={14}>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Visit or write
+              Contact
             </p>
-            <p className="mt-3 text-pretty text-base leading-relaxed text-slate-600 sm:text-lg">
-              Drop by during office hours, open the map for directions, or use the
-              form — we typically reply within two business days.
-            </p>
+            <h2 className="heading-font mt-3 text-2xl font-bold uppercase leading-tight text-slate-900 sm:text-3xl">
+              We are here to listen
+            </h2>
+            <div className="mt-5 space-y-4 text-pretty text-base leading-relaxed text-slate-600 sm:text-lg">
+              <p>
+                We welcome questions, ideas, partnership enquiries, volunteer
+                interest and messages from communities, supporters and
+                organizations that want to learn more about our work. If you
+                would like information about a programme, want to collaborate
+                with NNF, or need guidance on how to participate, please contact
+                us through the official contact details provided on this page.
+              </p>
+              <p>
+                Our team aims to respond to enquiries respectfully and direct
+                them to the appropriate programme or department. For
+                programme-related support, applicants may be asked to provide
+                relevant information so that requests can be reviewed fairly and
+                according to the Foundation’s procedures.
+              </p>
+              <p>
+                Official address, telephone number, email address, office hours
+                and social media links are displayed below and will be updated
+                once confirmed by the Foundation.
+              </p>
+            </div>
           </Reveal>
 
-          <div className="grid gap-10 lg:grid-cols-5 lg:gap-12 lg:items-start">
+          <div className="grid gap-10 lg:grid-cols-5 lg:items-start lg:gap-12">
             <Reveal className="lg:col-span-3" y={18}>
               <div className="space-y-6">
                 <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-lg ring-1 ring-slate-200/55">
@@ -44,7 +66,7 @@ export default function ContactPage() {
                       <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
                         <MapPin className="h-4 w-4" aria-hidden />
                       </span>
-                      Our location
+                      Official address
                     </span>
                     <a
                       href={mapOpenUrl}
@@ -90,7 +112,7 @@ export default function ContactPage() {
                     </span>
                     <div className="min-w-0">
                       <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                        Phone
+                        Telephone
                       </p>
                       <p className="mt-1 text-sm font-semibold text-slate-900 group-hover:text-primary sm:text-base">
                         {contactSite.phoneDisplay}
@@ -117,8 +139,19 @@ export default function ContactPage() {
 
                 <div className="rounded-2xl border border-slate-200/80 bg-white/80 px-4 py-5 shadow-sm ring-1 ring-slate-100 sm:px-6">
                   <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
+                    <Clock className="h-4 w-4 text-primary" aria-hidden />
+                    Office hours
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+                    {contactSite.officeHours ??
+                      "To be confirmed by the Foundation."}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-slate-200/80 bg-white/80 px-4 py-5 shadow-sm ring-1 ring-slate-100 sm:px-6">
+                  <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
                     <Share2 className="h-4 w-4 text-primary" aria-hidden />
-                    Social
+                    Social media
                   </p>
                   <ul className="mt-4 flex flex-wrap gap-2">
                     {contactSite.socialLinks.map((s) => (
@@ -146,8 +179,9 @@ export default function ContactPage() {
                     Send a message
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600 sm:text-base">
-                    Partnerships, volunteering, press — tell us what you need and
-                    we&apos;ll route it to the right person.
+                    Programme questions, partnerships, volunteering, or
+                    community enquiries — tell us what you need and we will
+                    route it to the right person.
                   </p>
                   <div className="mt-6">
                     <ContactForm />
