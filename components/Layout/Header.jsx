@@ -7,11 +7,11 @@ import { useEffect, useRef, useState } from "react";
 
 const whoWeAreLinks = [
   { href: "/who-we-are", label: "About us" },
-  { href: "/who-we-are#mission", label: "Mission & vision" },
-  { href: "/who-we-are#what", label: "What we do" },
-  { href: "/who-we-are#how", label: "How we do it" },
-  { href: "/who-we-are#work", label: "Work with us" },
-  { href: "/who-we-are#our", label: "our People" },
+  { href: "/who-we-are/mission-vision", label: "Mission & vision" },
+  { href: "/who-we-are/what-we-do", label: "What we do" },
+  { href: "/who-we-are/how-we-do-it", label: "How we do it" },
+  { href: "/who-we-are/work-with-us", label: "Work with us" },
+  { href: "/who-we-are/our-people", label: "Our People" },
 ];
 
 const navItems = [
