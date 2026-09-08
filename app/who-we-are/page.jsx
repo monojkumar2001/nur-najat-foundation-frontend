@@ -23,10 +23,9 @@ export default function AboutPage() {
         imageAlt="People collaborating in a community learning space"
       />
 
-      <div className="relative -mt-6 overflow-hidden rounded-t-3xl bg-white shadow-sm ring-1 ring-slate-200/80">
-        <div className="mx-auto max-w-7xl space-y-20 px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative -mt-6 rounded-t-3xl bg-white shadow-sm ring-1 ring-slate-200/80">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <AboutUS />
-        
         </div>
         <Reveal>
           <MissionVision />

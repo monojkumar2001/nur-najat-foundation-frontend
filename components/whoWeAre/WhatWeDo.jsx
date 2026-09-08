@@ -123,7 +123,7 @@ export default function WhatWeDo() {
       aria-labelledby="what-we-do-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-12">
           <motion.div
             className="space-y-5 lg:col-span-8"
             initial={{ opacity: 0, y: 24 }}
@@ -149,7 +149,7 @@ export default function WhatWeDo() {
             transition={{ duration: 0.75, ease: EASE }}
           >
             <div className="group relative overflow-hidden rounded-2xl bg-slate-100 shadow-md ring-1 ring-slate-200/80">
-              <div className="relative aspect-4/5 sm:aspect-5/6 lg:aspect-4/5">
+              <div className="relative aspect-[4/3] sm:aspect-[5/4] lg:aspect-[4/5]">
                 <Image
                   src={heroImage}
                   alt="A caregiver with a young child, representing NNF community support"

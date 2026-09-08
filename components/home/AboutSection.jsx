@@ -7,7 +7,7 @@ export function AboutSection() {
     <section className="bg-slate-50 py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg  ring-offset-slate-50 transition-shadow duration-300 hover:shadow-xl">
+          <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg ring-offset-slate-50 transition-shadow duration-300 hover:shadow-xl">
             <Image
               src="/assets/images/who-we.png"
               alt="Caregiver holding a young child — community and family support"
@@ -20,17 +20,19 @@ export function AboutSection() {
             <SectionHeading
               eyebrow="Who We Are"
               title="Building brighter futures, together"
-              subtitle="Nur and Najat Foundation is a non-profit committed to equitable access to education and health services. We listen first, then invest in programs shaped by the communities we serve."
+              subtitle="Nur and Najat Foundation (NNF) is a community-focused non-governmental, non-profit and non-political organization based in Panchagarh, Bangladesh. Since its establishment in January 2025, the Foundation has worked to support underserved people through humanitarian assistance, social welfare, educational support, women’s development and sustainable community initiatives."
               align="left"
               className="max-w-none"
             />
             <p className="mt-4 text-lg text-muted leading-relaxed">
-              We empower youth and communities to build a future free from
-              poverty.
+              NNF was founded on the understanding that poverty and vulnerability
+              are rarely caused by a single problem. Our response is designed
+              around people rather than isolated problems—connecting humanitarian
+              support with education, health, skills and community opportunity.
             </p>
             <div className="mt-4 md:mt-6">
-              <ButtonLink href="/about" variant="primary" className="px-6">
-                Learn More
+              <ButtonLink href="/who-we-are" variant="primary" className="px-6">
+                View Details
               </ButtonLink>
             </div>
           </div>
