@@ -92,18 +92,18 @@ export function ProgramDetail({ program }) {
             </Reveal>
           </div>
 
-          <div className="mt-14 flex flex-col gap-4 border-t border-slate-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-14 flex items-start justify-between gap-4 border-t border-slate-200 pt-8">
             {prev ? (
               <Link
                 href={`/programs/${prev.slug}`}
-                className="group inline-flex max-w-sm items-start gap-2 text-sm font-semibold text-slate-700 hover:text-primary"
+                className="group inline-flex min-w-0 max-w-[48%] items-start gap-2 text-sm font-semibold text-slate-700 hover:text-primary"
               >
                 <ArrowLeft className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
-                <span>
+                <span className="min-w-0 text-left">
                   <span className="block text-xs font-medium uppercase tracking-wide text-slate-400">
                     Previous
                   </span>
-                  {prev.shortTitle}
+                  <span className="block break-words">{prev.shortTitle}</span>
                 </span>
               </Link>
             ) : (
@@ -112,13 +112,13 @@ export function ProgramDetail({ program }) {
             {next ? (
               <Link
                 href={`/programs/${next.slug}`}
-                className="group inline-flex max-w-sm items-start gap-2 text-right text-sm font-semibold text-slate-700 hover:text-primary sm:ml-auto"
+                className="group ml-auto inline-flex min-w-0 max-w-[48%] items-start justify-end gap-2 text-sm font-semibold text-slate-700 hover:text-primary"
               >
-                <span>
+                <span className="min-w-0 text-right">
                   <span className="block text-xs font-medium uppercase tracking-wide text-slate-400">
                     Next
                   </span>
-                  {next.shortTitle}
+                  <span className="block break-words">{next.shortTitle}</span>
                 </span>
                 <ArrowRight className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
               </Link>
