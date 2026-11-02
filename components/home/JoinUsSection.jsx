@@ -31,7 +31,7 @@ export function JoinUsSection() {
           <div className="relative">
             <div className="mx-auto max-w-4xl">
               <motion.div
-                className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-6 py-10 shadow-2xl backdrop-blur-md sm:px-10 sm:py-14"
+                className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-6 py-10 shadow-2xl backdrop-blur-sm sm:px-10 sm:py-14"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}

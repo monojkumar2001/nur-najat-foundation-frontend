@@ -43,7 +43,7 @@ export function PageHeader({ eyebrow, title, description, image, imageAlt = "" }
           />
         </motion.div>
         <div
-          className="absolute inset-0 bg-linear-to-r from-slate-950/90 via-slate-900/75 to-slate-900/50"
+          className="absolute inset-0 bg-linear-to-r from-slate-950/70 via-slate-900/50 to-slate-900/30"
           aria-hidden
         />
         <div className="relative z-10 mx-auto flex min-h-[260px] max-w-7xl flex-col justify-end px-4 pb-10 pt-28 sm:min-h-[340px] sm:px-6 sm:pb-14 sm:pt-32 lg:min-h-[380px] lg:px-8">

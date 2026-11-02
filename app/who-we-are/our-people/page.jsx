@@ -17,6 +17,7 @@ export default function OurPeoplePage() {
       image={hero.about}
       imageAlt="Foundation members and community leaders"
       showJoinUs
+      flushContent
     >
       <MembershipStructure />
     </WhoWeAreShell>

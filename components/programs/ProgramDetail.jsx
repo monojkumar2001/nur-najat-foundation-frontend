@@ -6,7 +6,7 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { JoinUsSection } from "@/components/home/JoinUsSection";
 import { Reveal } from "@/components/motion/Reveal";
 import { programs } from "@/lib/programs";
-import { hero } from "@/lib/unsplash";
+import { getProgramHeroImage } from "@/lib/unsplash";
 
 export function ProgramDetail({ program }) {
   const currentIndex = programs.findIndex((p) => p.slug === program.slug);
@@ -22,7 +22,7 @@ export function ProgramDetail({ program }) {
         eyebrow={program.eyebrow}
         title={program.title}
         description={program.summary}
-        image={hero.programs}
+        image={getProgramHeroImage(program.slug)}
         imageAlt={program.imageAlt}
       />
 

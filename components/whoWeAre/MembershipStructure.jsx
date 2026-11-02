@@ -33,61 +33,53 @@ function IconLinkedIn({ className = "h-4 w-4" }) {
 const introSubtitle =
   "Nur & Najat Foundation recognizes four categories of membership, each designed to support and strengthen its mission of social development.";
 
-const defaultSocial = {
-  facebook: "#",
-  twitter: "#",
-  linkedin: "#",
-};
+// const defaultSocial = {
+//   facebook: "#",
+//   twitter: "#",
+//   linkedin: "#",
+// };
 
 const executiveBoardMembers = [
   {
     name: "MUHAMMAD NAWSHAD ZAMIR",
-    cardTitle: "NAWSHAD ZAMIR",
     designation: "Chairman",
-    image: "/assets/images/memeber.png",
-    social: defaultSocial,
+    image: "/assets/images/team/1.png",
+    // social: defaultSocial,
   },
   {
-    name: "NILUFAR AKHTAR JAMIR",
+    name: "Muhammad Naufal Arshad Zamir",
+    designation: "Vice-Chairman",
+    image: "/assets/images/team/2.png",
+  },
+  {
+    name: "Md.Montu Alam",
     designation: "Vice-Chairman",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&w=640&q=80",
-    social: defaultSocial,
+      "/assets/images/team/3.png",
   },
   {
-    name: "MUHAMMAD NAUFAL ARSHAD ZAMIR",
-    designation: "Vice-Chairman",
+    name: "Md.Mahmudul Hasan",
+    designation: "General Secretary ",
     image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&w=640&q=80",
-    social: defaultSocial,
+      "/assets/images/team/4.png",
   },
   {
-    name: "MUHAMMAD OMAR NAJIB ZAMIR",
+    name: "Md.Shafiul Islam",
+    designation: "Treasurer", 
+    image:
+      "/assets/images/team/5.png",
+  },
+  {
+    name: "Md.Abu Kalam",
     designation: "Executive Member",
     image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&w=640&q=80",
-    social: defaultSocial,
+      "/assets/images/team/6.png",
   },
   {
-    name: "MD MAHMUDUL HASAN",
-    designation: "Secretary",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&w=640&q=80",
-    social: defaultSocial,
-  },
-  {
-    name: "MD SHAFIUL ALAM",
-    designation: "Treasurer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&w=640&q=80",
-    social: defaultSocial,
-  },
-  {
-    name: "MD ABU KALAM AZAD",
+    name: "Tushar Kanti Roy",
     designation: "Executive Member",
     image:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&w=640&q=80",
-    social: defaultSocial,
+      "/assets/images/team/7.png",
   },
 ];
 
@@ -117,7 +109,7 @@ function HoverPhoto({ src, alt, sizes, fillCell = false }) {
     <div
       className={
         fillCell
-          ? "group relative h-full min-h-[22rem] w-full overflow-hidden bg-slate-200 lg:min-h-0"
+          ? "group relative h-full min-h-[16rem] w-full overflow-hidden bg-slate-200 sm:min-h-[22rem] lg:min-h-0"
           : "group relative aspect-3/2 w-full overflow-hidden bg-slate-200"
       }
     >
@@ -133,12 +125,13 @@ function HoverPhoto({ src, alt, sizes, fillCell = false }) {
 }
 
 function ExecutiveCard({ member }) {
-  const social = member.social ?? defaultSocial;
-  const title = member.cardTitle ?? member.name;
+  // const social = member.social ?? defaultSocial;
+  const social = member.social;
+  const title = member.name;
 
   return (
     <motion.article
-      className="flex w-full max-w-[18rem] cursor-pointer flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-slate-200/50"
+      className="flex w-full max-w-sm cursor-pointer flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-slate-200/50 sm:max-w-[18rem]"
       initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={viewport}
@@ -151,106 +144,97 @@ function ExecutiveCard({ member }) {
           alt={member.name}
           fill
           className="object-cover object-top transition-transform duration-500 ease-out motion-reduce:transition-none group-hover:scale-110"
-          sizes="(min-width: 1024px) 200px, 100vw"
+          sizes="(min-width: 1024px) 200px, (min-width: 640px) 50vw, 100vw"
         />
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-linear-to-t from-black/45 via-black/15 to-transparent"
           aria-hidden
         />
       </div>
-      <div className="flex flex-1 flex-col gap-4 px-6 pb-6 pt-5">
+      <div className="flex flex-1 flex-col gap-3 px-4 pb-5 pt-4 sm:gap-4 sm:px-6 sm:pb-6 sm:pt-5">
         <div>
-          <h4 className="heading-font text-base font-bold uppercase leading-snug tracking-tight text-slate-900">
+          <h4 className="heading-font text-sm font-bold uppercase leading-snug tracking-tight text-slate-900 sm:text-base">
             {title}
           </h4>
-          <p className="mt-1 text-sm font-normal text-slate-500">
+          <p className="mt-1 text-sm font-normal text-slate-500 sm:text-base">
             {member.designation}
           </p>
         </div>
-        <div className="flex items-center gap-3 text-slate-900">
-          <a
-            href={social.facebook}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors duration-300 hover:text-primary hover:opacity-70"
-            aria-label={`${member.name} on Facebook`}
-          >
-            <IconFacebook className="h-5 w-5" />
-          </a>
-          <a
-            href={social.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors duration-300 hover:text-primary hover:opacity-70"
-            aria-label={`${member.name} on X`}
-          >
-            <IconTwitter className="h-5 w-5" />
-          </a>
-          <a
-            href={social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors duration-300 hover:text-primary hover:opacity-70"
-            aria-label={`${member.name} on LinkedIn`}
-          >
-            <IconLinkedIn className="h-5 w-5" />
-          </a>
-        </div>
-        <a
-          href="#membership"
-          className="mt-auto text-sm font-normal text-slate-500 underline-offset-4 hover:text-primary hover:underline"
-          aria-label={`See more about ${member.name}`}
-          title={`See more about ${member.name}`}
-        >
-          See more
-        </a>
+        {social && (
+          <div className="flex items-center gap-3 text-slate-900">
+            <a
+              href={social.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors duration-300 hover:text-primary hover:opacity-70"
+              aria-label={`${member.name} on Facebook`}
+            >
+              <IconFacebook className="h-5 w-5" />
+            </a>
+            <a
+              href={social.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors duration-300 hover:text-primary hover:opacity-70"
+              aria-label={`${member.name} on X`}
+            >
+              <IconTwitter className="h-5 w-5" />
+            </a>
+            <a
+              href={social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors duration-300 hover:text-primary hover:opacity-70"
+              aria-label={`${member.name} on LinkedIn`}
+            >
+              <IconLinkedIn className="h-5 w-5" />
+            </a>
+          </div>
+        )}
       </div>
     </motion.article>
   );
 }
 
 export default function MembershipStructure() {
-  const boardFirstRow = executiveBoardMembers.slice(0, 4);
-  const boardSecondRow = executiveBoardMembers.slice(4);
-
   return (
     <section
       id="membership"
-      className="scroll-mt-28 py-16 md:py-20"
+      className="scroll-mt-28"
       aria-label="Membership structure"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="mx-auto max-w-4xl px-4 text-center sm:px-6"
+          className="mx-auto max-w-4xl text-center"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewport}
           transition={{ duration: DURATION.section, ease: EASE }}
         >
-          <h2 className="heading-font text-3xl font-bold uppercase leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
+          <h2 className="heading-font text-2xl font-bold uppercase leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
             Membership structure
           </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600 sm:mt-5 sm:text-lg">
             {introSubtitle}
           </p>
         </motion.div>
 
         <motion.div
-          className="mx-auto mt-8 max-w-6xl px-4 sm:mt-10 sm:px-6 lg:px-8"
+          className="mx-auto mt-8 max-w-6xl sm:mt-10"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewport}
           transition={{ duration: DURATION.section, ease: EASE, delay: 0.04 }}
         >
-          <h3 className="heading-font text-2xl font-bold uppercase text-slate-900 sm:text-3xl">
+          <h3 className="heading-font text-xl font-bold uppercase text-slate-900 sm:text-3xl">
             General member
           </h3>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            <div className="rounded-bl-3xl rounded-tr-3xl bg-[#e8f4fc] px-6 py-7 shadow-sm ring-1 ring-sky-100/80 sm:px-8 sm:py-8">
-              <h3 className="text-xl font-bold uppercase tracking-wide text-black md:text-2xl">
+          <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 md:grid-cols-2">
+            <div className="rounded-bl-3xl rounded-tr-3xl bg-[#e8f4fc] px-5 py-6 shadow-sm ring-1 ring-sky-100/80 sm:px-8 sm:py-8">
+              <h3 className="text-lg font-bold uppercase tracking-wide text-black sm:text-xl md:text-2xl">
                 Founder members
               </h3>
-              <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
+              <p className="mt-3 text-base leading-relaxed text-muted sm:mt-4 md:text-lg">
                 Individuals who were present at the founding meeting of the
                 Foundation and expressed willingness to contribute—financially
                 or otherwise—toward social development shall be recognized as
@@ -259,11 +243,11 @@ export default function MembershipStructure() {
                 election to the Executive Board.
               </p>
             </div>
-            <div className="rounded-bl-3xl rounded-tr-3xl bg-[#e8f4fc] px-6 py-7 shadow-sm ring-1 ring-sky-100/80 sm:px-8 sm:py-8">
-              <h3 className="text-xl font-bold uppercase tracking-wide text-black md:text-2xl">
+            <div className="rounded-bl-3xl rounded-tr-3xl bg-[#e8f4fc] px-5 py-6 shadow-sm ring-1 ring-sky-100/80 sm:px-8 sm:py-8">
+              <h3 className="text-lg font-bold uppercase tracking-wide text-black sm:text-xl md:text-2xl">
                 General members
               </h3>
-              <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
+              <p className="mt-3 text-base leading-relaxed text-muted sm:mt-4 md:text-lg">
                 Any individual may apply for General Membership. Admission is
                 subject to approval by the Executive Board and final acceptance
                 by the President upon recommendation from the Secretary.
@@ -273,20 +257,20 @@ export default function MembershipStructure() {
         </motion.div>
 
         <motion.div
-          className="mt-8 bg-white py-16 sm:mt-10 sm:py-20"
+          className="mt-10 py-10 sm:mt-12 sm:py-16"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewport}
           transition={{ duration: DURATION.section, ease: EASE, delay: 0.05 }}
         >
-          <h3 className="heading-font text-center text-2xl font-bold uppercase text-slate-900 sm:text-3xl">
+          <h3 className="heading-font text-center text-xl font-bold uppercase text-slate-900 sm:text-3xl">
             Executive board member
           </h3>
-          <p className="mx-auto mt-6 max-w-3xl text-center text-base leading-relaxed text-muted sm:text-lg">
+          <p className="mx-auto mt-4 max-w-3xl text-center text-base leading-relaxed text-muted sm:mt-6 sm:text-lg">
             Executive Board Members are responsible for the governance and
             strategic direction of the Foundation.
           </p>
-          <ul className="mx-auto mt-6 flex max-w-3xl flex-col gap-3 px-4 text-left text-base text-muted sm:text-lg">
+          <ul className="mx-auto mt-5 flex max-w-3xl flex-col gap-3 text-left text-base text-muted sm:mt-6 sm:text-lg">
             <li className="flex items-start gap-2">
               <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
               <span>
@@ -302,13 +286,13 @@ export default function MembershipStructure() {
             </li>
           </ul>
 
-          <div className="mt-12 grid justify-items-center gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10">
-            {boardFirstRow.map((m) => (
+          <div className="mt-8 grid grid-cols-1 justify-items-center gap-5 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10">
+            {executiveBoardMembers.slice(0, 4).map((m) => (
               <ExecutiveCard key={m.name} member={m} />
             ))}
           </div>
-          <div className="mt-8 flex flex-wrap justify-center gap-8 lg:mt-10 lg:gap-x-6">
-            {boardSecondRow.map((m) => (
+          <div className="mt-5 flex flex-col items-center gap-5 sm:mt-6 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6 lg:mt-10 lg:gap-x-6">
+            {executiveBoardMembers.slice(4).map((m) => (
               <ExecutiveCard key={m.name} member={m} />
             ))}
           </div>
@@ -316,13 +300,13 @@ export default function MembershipStructure() {
       </div>
 
       <motion.div
-        className="bg-[#F5F2F0] py-16 sm:py-20"
+        className="bg-[#F5F2F0] py-10 sm:py-20"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={viewport}
         transition={{ duration: DURATION.section, ease: EASE }}
       >
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+        <div className="mx-auto grid max-w-7xl items-center gap-6 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
           <motion.div
             className="order-2 lg:order-1"
             initial={{ opacity: 0, y: 20 }}
@@ -330,10 +314,10 @@ export default function MembershipStructure() {
             viewport={viewport}
             transition={{ duration: DURATION.section, ease: EASE }}
           >
-            <h3 className="heading-font text-2xl font-bold uppercase text-slate-900 sm:text-3xl">
+            <h3 className="heading-font text-xl font-bold uppercase text-slate-900 sm:text-3xl">
               Life member
             </h3>
-            <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
+            <p className="mt-4 text-base leading-relaxed text-muted sm:mt-5 sm:text-lg">
               Individuals who are inspired by the objectives and programs of
               the Foundation may become Life Members by making a{" "}
               <strong className="font-semibold text-slate-900">
@@ -360,21 +344,21 @@ export default function MembershipStructure() {
       </motion.div>
 
       <motion.div
-        className="bg-white py-16 sm:py-20"
+        className="bg-white py-10 sm:py-20"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={viewport}
         transition={{ duration: DURATION.section, ease: EASE }}
       >
-        <div className="mx-auto grid max-w-7xl items-stretch gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+        <div className="mx-auto grid max-w-7xl items-stretch gap-6 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
           <motion.div
-            className="flex h-full min-h-[22rem] w-full"
+            className="flex h-full min-h-[16rem] w-full sm:min-h-[22rem]"
             initial={{ opacity: 0, scale: 1.03 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={viewport}
             transition={{ duration: 0.75, ease: EASE }}
           >
-            <div className="relative h-full min-h-[22rem] w-full flex-1 overflow-hidden rounded-xl ring-1 ring-slate-200/60 lg:min-h-0">
+            <div className="relative h-full min-h-[16rem] w-full flex-1 overflow-hidden rounded-xl ring-1 ring-slate-200/60 sm:min-h-[22rem] lg:min-h-0">
               <HoverPhoto
                 fillCell
                 src={programMemberImage}
@@ -402,11 +386,11 @@ export default function MembershipStructure() {
               Any individual seeking to benefit from the Foundation’s programs
               may apply through the local office. Membership is granted upon:
             </p>
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-muted marker:text-primary">
+            <ul className="mt-4 flex flex-col gap-2.5 text-base leading-relaxed text-muted">
               {programApplicationSteps.map((step) => (
                 <li key={step} className="flex items-start gap-2">
                   <CheckCircle className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                  <span className="text-base text-muted">{step}</span>
+                  <span>{step}</span>
                 </li>
               ))}
             </ul>
@@ -419,13 +403,13 @@ export default function MembershipStructure() {
       </motion.div>
 
       <motion.div
-        className="bg-[#f5f2eb] py-16 sm:py-20"
+        className="bg-[#f5f2eb] py-10 sm:py-20"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={viewport}
         transition={{ duration: DURATION.section, ease: EASE }}
       >
-        <div className="mx-auto grid max-w-7xl items-stretch gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+        <div className="mx-auto grid max-w-7xl items-stretch gap-6 px-4 sm:gap-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
           <motion.div
             className="order-2 flex flex-col justify-center lg:order-1"
             initial={{ opacity: 0, y: 22 }}
@@ -433,27 +417,27 @@ export default function MembershipStructure() {
             viewport={viewport}
             transition={{ duration: DURATION.section, ease: EASE }}
           >
-            <div className="rounded-2xl border border-white/60 bg-white/95 p-6 shadow-md ring-1 ring-slate-200/40 backdrop-blur-sm sm:p-8">
+            <div className="rounded-2xl border border-white/60 bg-white/95 p-5 shadow-md ring-1 ring-slate-200/40 backdrop-blur-sm sm:p-8">
               <p className="text-sm font-semibold uppercase tracking-wide text-primary">
                 Expectations
               </p>
-              <h3 className="heading-font mt-2 text-2xl font-bold uppercase leading-tight text-slate-900 sm:text-3xl">
+              <h3 className="heading-font mt-2 text-xl font-bold uppercase leading-tight text-slate-900 sm:text-3xl">
                 Duties &amp; responsibilities of program members
               </h3>
               <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
                 Program Members are expected to:
               </p>
-              <ul className="mt-8 flex flex-col gap-3 sm:gap-4">
+              <ul className="mt-6 flex flex-col gap-3 sm:mt-8 sm:gap-4">
                 {programMemberDuties.map((duty) => (
                   <li
                     key={duty}
-                    className="flex gap-3 rounded-xl bg-[#f5f2eb]/90 px-4 py-3.5 ring-1 ring-slate-200/60 sm:px-5 sm:py-4"
+                    className="flex gap-3 rounded-xl bg-[#f5f2eb]/90 px-3.5 py-3 ring-1 ring-slate-200/60 sm:px-5 sm:py-4"
                   >
                     <CheckCircle
                       className="mt-0.5 h-5 w-5 shrink-0 text-primary"
                       aria-hidden
                     />
-                    <span className="text-base leading-relaxed text-muted">
+                    <span className="text-sm leading-relaxed text-muted sm:text-base">
                       {duty}
                     </span>
                   </li>
@@ -462,13 +446,13 @@ export default function MembershipStructure() {
             </div>
           </motion.div>
           <motion.div
-            className="order-1 flex h-full min-h-[22rem] w-full lg:order-2"
+            className="order-1 flex h-full min-h-[16rem] w-full sm:min-h-[22rem] lg:order-2"
             initial={{ opacity: 0, scale: 1.03 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={viewport}
             transition={{ duration: 0.75, ease: EASE, delay: 0.05 }}
           >
-            <div className="relative h-full min-h-[22rem] w-full flex-1 overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200/50 lg:min-h-0">
+            <div className="relative h-full min-h-[16rem] w-full flex-1 overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200/50 sm:min-h-[22rem] lg:min-h-0">
               <HoverPhoto
                 fillCell
                 src={dutiesImage}

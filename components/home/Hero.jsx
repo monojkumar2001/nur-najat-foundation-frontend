@@ -39,7 +39,7 @@ export function Hero() {
           sizes="100vw"
         />
       </motion.div>
-      <div className="absolute inset-0 bg-linear-to-r from-navy/90 via-navy/70 to-navy/40" />
+      <div className="absolute inset-0 bg-linear-to-r from-navy/70 via-navy/45 to-navy/25" />
 
       <div className="relative mx-auto flex max-w-7xl min-h-[85vh] flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
         <motion.div
@@ -52,15 +52,13 @@ export function Hero() {
             variants={item}
             className="heading-font text-4xl font-bold uppercase leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
-            Empowering Communities, Changing Lives
+            TOGETHER FOR <br /> A BETTER TOMORROW
           </motion.h1>
           <motion.p
             variants={item}
             className="mt-6 max-w-xl text-lg text-white/90"
           >
-            We partner with local leaders to deliver education, healthcare, and
-            livelihood programs that create lasting impact for families and
-            youth.
+          SUPPORTING COMMUNITIES THROUGH EDUCATION, WOMEN&rsquo;S EMPOWERMENT, AND SOCIAL WELFARE
           </motion.p>
           <motion.div
             variants={item}

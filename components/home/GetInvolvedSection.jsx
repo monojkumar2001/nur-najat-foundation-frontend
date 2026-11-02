@@ -46,8 +46,8 @@ export function GetInvolvedSection() {
           >
             <div className="relative aspect-[16/10] shrink-0 overflow-hidden">
               <Image
-                src={thumb.volunteer}
-                alt=""
+                src="/assets/images/volunteer.png"
+                alt="Volunteer"
                 fill
                 className="object-cover transition-transform duration-500 ease-out motion-reduce:transition-none motion-reduce:group-hover:scale-100 group-hover:scale-110"
                 sizes="(min-width: 1024px) 50vw, 100vw"
