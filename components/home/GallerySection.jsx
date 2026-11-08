@@ -11,7 +11,13 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { galleryGrid } from "@/lib/unsplash";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 
-const baseTitles = ["Education", "Health", "Community", "Livelihood", "Volunteer"];
+const baseTitles = [
+  "Education",
+  "Health",
+  "Community",
+  "Livelihood",
+  "Volunteer",
+];
 
 export function GallerySection() {
   const slides = useMemo(
@@ -20,7 +26,7 @@ export function GallerySection() {
         src,
         title: baseTitles[i % baseTitles.length],
       })),
-    []
+    [],
   );
 
   const [active, setActive] = useState(null);
@@ -79,8 +85,8 @@ export function GallerySection() {
             }}
             breakpoints={{
               0: { slidesPerView: 1, spaceBetween: 10 },
-              640: { slidesPerView: 4, spaceBetween: 10 },
-              1024: { slidesPerView: 6, spaceBetween: 10 },
+              640: { slidesPerView: 2, spaceBetween: 10 },
+              1024: { slidesPerView: 5, spaceBetween: 10 },
             }}
           >
             {slides.map((s, idx) => (
@@ -98,15 +104,6 @@ export function GallerySection() {
                     sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 90vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/65 via-black/10 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-white/80">
-                      Featured
-                    </p>
-                    <h3 className="mt-1 text-lg font-semibold text-white">
-                      {s.title}
-                    </h3>
-                  </div>
                 </button>
               </SwiperSlide>
             ))}
@@ -187,7 +184,7 @@ export function GallerySection() {
               </div>
             </div>
           </div>
-          </div>
+        </div>
       ) : null}
     </section>
   );
