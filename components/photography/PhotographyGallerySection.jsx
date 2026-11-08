@@ -5,17 +5,15 @@ import { useCallback, useEffect, useState } from "react";
 import { Minus, Plus, X } from "lucide-react";
 import { photographyGalleryImages } from "@/lib/photography";
 
-const INITIAL_COUNT = 4;
-const TOTAL = 12;
+const INITIAL_COUNT = 12;
 
 export function PhotographyGallerySection() {
-  const items = photographyGalleryImages.slice(0, TOTAL);
+  const items = photographyGalleryImages;
   const [expanded, setExpanded] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [zoom, setZoom] = useState(1);
 
-  const showSeeToggle =
-    items.length > INITIAL_COUNT && items.length < TOTAL;
+  const showSeeToggle = items.length > INITIAL_COUNT;
   const visible = showSeeToggle
     ? expanded
       ? items

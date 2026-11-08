@@ -3,9 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
 
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { galleryGrid } from "@/lib/unsplash";
@@ -69,45 +66,35 @@ export function GallerySection() {
 
       <div className="mt-10 flex w-full flex-col gap-6">
         {/* Left Slider */}
-        <div className="w-full overflow-hidden">
-          <Swiper
-            modules={[Autoplay]}
-            className="w-full"
-            loop={true}
-            grabCursor={true}
-            centeredSlides={false}
-            spaceBetween={10}
-            speed={3000}
-            autoplay={{
-              delay: 0,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            breakpoints={{
-              0: { slidesPerView: 1, spaceBetween: 10 },
-              640: { slidesPerView: 2, spaceBetween: 10 },
-              1024: { slidesPerView: 5, spaceBetween: 10 },
-            }}
-          >
-            {slides.map((s, idx) => (
-              <SwiperSlide key={`left-${idx}-${s.src}`} virtualIndex={idx}>
-                <button
-                  type="button"
-                  onClick={() => setActive(s)}
-                  className="group relative h-[320px] w-full overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 text-left shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 cursor-pointer"
-                  aria-label={`Open image: ${s.title}`}
-                >
-                  <Image
-                    src={s.src}
-                    alt={s.title}
-                    fill
-                    sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 90vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  />
-                </button>
-              </SwiperSlide>
+        <div className="gallery-marquee w-full overflow-hidden">
+          <div className="gallery-marquee-track">
+            {[false, true].map((duplicate) => (
+              <div
+                className="gallery-marquee-set"
+                key={duplicate ? "duplicate" : "original"}
+                aria-hidden={duplicate || undefined}
+              >
+                {slides.map((slide, idx) => (
+                  <button
+                    type="button"
+                    key={`${duplicate ? "duplicate" : "original"}-${idx}-${slide.src}`}
+                    onClick={duplicate ? undefined : () => setActive(slide)}
+                    tabIndex={duplicate ? -1 : 0}
+                    className="gallery-marquee-slide group relative h-80 shrink-0 overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 text-left shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 cursor-pointer"
+                    aria-label={duplicate ? undefined : `Open image: ${slide.title}`}
+                  >
+                    <Image
+                      src={slide.src}
+                      alt={duplicate ? "" : slide.title}
+                      fill
+                      sizes="(min-width: 1024px) 300px, (min-width: 640px) 320px, 85vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    />
+                  </button>
+                ))}
+              </div>
             ))}
-          </Swiper>
+          </div>
         </div>
       </div>
 
@@ -135,7 +122,7 @@ export function GallerySection() {
             <button
               type="button"
               onClick={() => setActive(null)}
-              className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-neutral-900 shadow-sm backdrop-blur transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="absolute cursor-pointer right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-neutral-900 shadow-sm backdrop-blur transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               aria-label="Close modal"
             >
               <svg
@@ -163,25 +150,6 @@ export function GallerySection() {
                 className="object-cover"
                 priority
               />
-            </div>
-            <div className="flex items-center justify-between gap-4 px-5 py-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
-                  Featured
-                </p>
-                <p className="mt-1 text-base font-semibold text-neutral-900">
-                  {active.title}
-                </p>
-              </div>
-              <div className="flex justify-end w-full">
-                <Link
-                  href="/gallery"
-                  onClick={() => setActive(null)}
-                  className="inline-flex shrink-0 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                >
-                  Open gallery
-                </Link>
-              </div>
             </div>
           </div>
         </div>

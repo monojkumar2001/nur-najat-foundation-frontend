@@ -11,7 +11,7 @@ const quickLinks = [
 const socials = [
   {
     label: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/profile.php?id=61581433026754",
     svg: (
       <svg
         viewBox="0 0 24 24"

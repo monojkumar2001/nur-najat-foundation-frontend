@@ -3,8 +3,8 @@
 :root {
   --background: #222222;
   --foreground: #f5f5f5;
-  --primary: #00adee;
-  --primary-dark: #0090c7;
+  --primary: #429CA4;
+  --primary-dark: #429CA4;
   --accent: #f5a623;
   --accent-dark: #d97706;
   --navy: #0f172a;
@@ -27,10 +27,12 @@
   --animate-initiatives-play: initiatives-play-zoom 2.2s ease-in-out infinite;
 
   @keyframes initiatives-play-zoom {
+
     0%,
     100% {
       transform: scale(1);
     }
+
     50% {
       transform: scale(1.14);
     }
@@ -79,5 +81,44 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .surface-card:hover {
     transform: none;
+  }
+}
+
+.gallery-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: gallery-marquee 45s linear infinite;
+  will-change: transform;
+}
+
+.gallery-marquee-set {
+  display: flex;
+  flex-shrink: 0;
+  gap: 10px;
+}
+
+.gallery-marquee-slide {
+  width: 85vw;
+}
+
+@media (min-width: 640px) {
+  .gallery-marquee-slide {
+    width: 320px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-marquee-slide {
+    width: 300px;
+  }
+}
+
+@keyframes gallery-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }

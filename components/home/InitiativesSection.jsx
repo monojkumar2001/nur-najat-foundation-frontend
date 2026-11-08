@@ -13,7 +13,8 @@ import { useCallback, useEffect, useId, useState } from "react";
 import { thumb } from "@/lib/unsplash";
 
 /** YouTube video ID only (the value after v= in the watch URL). Change to your film. */
-const INITIATIVES_YOUTUBE_VIDEO_ID = "https://www.youtube.com/watch?v=ztlEK-9LLrE&list=RDZMLoJEgI2mY&index=27";
+const INITIATIVES_YOUTUBE_VIDEO_ID =
+  "https://www.youtube.com/watch?v=ztlEK-9LLrE&list=RDZMLoJEgI2mY&index=27";
 
 const initiatives = [
   {
@@ -67,8 +68,8 @@ export function InitiativesSection() {
             Our initiatives
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-600">
-            From scholarships to daily care, our programs meet urgent needs while
-            building long-term strength in the communities we serve.
+            From scholarships to daily care, our programs meet urgent needs
+            while building long-term strength in the communities we serve.
           </p>
         </header>
 
@@ -109,7 +110,9 @@ export function InitiativesSection() {
                   className="initiatives-play-btn group flex cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
                   aria-haspopup="dialog"
                   aria-expanded={videoOpen}
-                  aria-controls={videoOpen ? "initiatives-yt-dialog" : undefined}
+                  aria-controls={
+                    videoOpen ? "initiatives-yt-dialog" : undefined
+                  }
                   aria-label="Play initiative video on YouTube"
                 >
                   <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-lg transition-transform duration-200 ease-out animate-initiatives-play group-hover:animate-none group-hover:scale-[1.12] group-focus-visible:animate-none group-focus-visible:scale-[1.12] motion-reduce:animate-none motion-reduce:group-hover:scale-100 motion-reduce:group-focus-visible:scale-100 sm:h-20 sm:w-20">
@@ -157,7 +160,7 @@ export function InitiativesSection() {
             <div className="relative aspect-video w-full bg-black">
               <iframe
                 title="YouTube — initiative video"
-                src={`https://www.youtube.com/embed/${INITIATIVES_YOUTUBE_VIDEO_ID}?autoplay=1&rel=0`}
+                src={`/assets/video/video.mp4`}
                 className="absolute inset-0 h-full w-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen

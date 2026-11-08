@@ -2,11 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { ArrowUpRight, Play, X } from "lucide-react";
-import {
-  photographyVideos,
-  youtubeEmbedUrl,
-  youtubeThumbUrl,
-} from "@/lib/photography";
+import { photographyVideos, youtubeEmbedUrl, youtubeThumbUrl } from "@/lib/photography";
 
 const INITIAL_COUNT = 4;
 const TOTAL = 12;
@@ -74,12 +70,23 @@ export function PhotographyVideoSection() {
                 className="group relative w-full cursor-pointer overflow-hidden rounded-2xl bg-white text-left shadow-md ring-1 ring-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 <div className="relative aspect-video w-full overflow-hidden bg-slate-900">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={youtubeThumbUrl(video.youtubeId)}
-                    alt=""
-                    className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.06]"
-                  />
+                  {video.videoSrc ? (
+                    <video
+                      src={video.videoSrc}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.06]"
+                      aria-label={video.title}
+                    />
+                  ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={youtubeThumbUrl(video.youtubeId)}
+                      alt=""
+                      className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.06]"
+                    />
+                  )}
                   <div
                     className="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/35 to-slate-950/10 transition-opacity duration-300 group-hover:via-slate-950/45"
                     aria-hidden
@@ -152,14 +159,27 @@ export function PhotographyVideoSection() {
             </div>
             <div className="overflow-hidden rounded-2xl bg-black shadow-2xl ring-1 ring-white/15">
               <div className="relative aspect-video w-full">
-                <iframe
-                  key={openVideo.id}
-                  src={youtubeEmbedUrl(openVideo.youtubeId)}
-                  title={openVideo.title}
-                  className="absolute inset-0 h-full w-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
+                {openVideo.videoSrc ? (
+                  <video
+                    key={openVideo.id}
+                    src={openVideo.videoSrc}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="absolute inset-0 h-full w-full object-contain bg-black"
+                  >
+                    Your browser does not support the video element.
+                  </video>
+                ) : (
+                  <iframe
+                    key={openVideo.id}
+                    src={youtubeEmbedUrl(openVideo.youtubeId)}
+                    title={openVideo.title}
+                    className="absolute inset-0 h-full w-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                )}
               </div>
             </div>
           </div>
