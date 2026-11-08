@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "dev:turbopack": "next dev --turbopack",
+    "dev": "node init && next dev",
+    "dev:turbopack": "node init && next dev --turbopack",
     "clean": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\"",
-    "build": "next build --turbopack",
-    "start": "next start",
+    "build": "node init && next build --turbopack",
+    "start": "node init && next start",
     "lint": "eslint"
   },
   "dependencies": {
