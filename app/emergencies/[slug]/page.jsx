@@ -19,8 +19,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const post = emergenciesBySlug[slug];
-  if (!post) return { title: "Update not found" };
-  return { title: `${post.title} | Emergencies | Nur and Najat Foundation` };
+  if (!post) {
+    return {
+      title: "Update not found | Nur and Najat Foundation",
+      description: "The requested emergency update could not be found.",
+      keywords: ["Nur and Najat Foundation", "emergency response", "update"],
+    };
+  }
+  return {
+    title: `${post.title} | Emergencies | Nur and Najat Foundation`,
+    description: post.summary || post.excerpt || "Emergency response update from Nur and Najat Foundation.",
+    keywords: [post.title, "Nur and Najat Foundation", "emergency response", "humanitarian aid", "Bangladesh"],
+  };
 }
 
 export default async function EmergencyPostPage({ params }) {

@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/Layout/PageHeader";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
+  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
   title: "Resources | Nur and Najat Foundation",
   description:
     "Articles and links on poverty reduction, education, and community development.",

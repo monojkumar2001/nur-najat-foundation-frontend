@@ -4,6 +4,7 @@ import { hero } from "@/lib/unsplash";
 import { pressItems } from "@/lib/press";
 
 export const metadata = {
+  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
   title: "Press Centre | Nur and Najat Foundation",
   description: "Press releases, announcements, and official updates from NNF.",
 };

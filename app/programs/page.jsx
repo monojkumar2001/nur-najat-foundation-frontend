@@ -7,6 +7,7 @@ import { hero } from "@/lib/unsplash";
 import { ArrowRight } from "lucide-react";
 
 export const metadata = {
+  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
   title: "Programs | Nur and Najat Foundation",
   description:
     "Explore NNF programmes in education, health, solar lighting, WASH, environment and women’s empowerment.",

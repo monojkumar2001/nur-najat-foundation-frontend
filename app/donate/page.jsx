@@ -5,6 +5,7 @@ import { DonatePanel } from "@/components/donate/DonatePanel";
 import { hero, thumb } from "@/lib/unsplash";
 
 export const metadata = {
+  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
   title: "Donate | Nur and Najat Foundation",
   description: "Support education, humanitarian work, and training with a gift.",
 };

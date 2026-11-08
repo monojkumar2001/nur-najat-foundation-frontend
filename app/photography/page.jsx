@@ -4,6 +4,7 @@ import { PhotographyVideoSection } from "@/components/photography/PhotographyVid
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
+  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
   title: "Photography | Nur and Najat Foundation",
   description: "Photo gallery and video library from Nur and Najat Foundation programs and events.",
 };

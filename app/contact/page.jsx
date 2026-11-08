@@ -6,6 +6,7 @@ import { hero } from "@/lib/unsplash";
 import { Clock, ExternalLink, Mail, MapPin, Phone, Share2 } from "lucide-react";
 
 export const metadata = {
+  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
   title: "Contact | Nur and Najat Foundation",
   description:
     "Contact NNF with questions, partnership enquiries, volunteer interest, or messages about our programmes.",

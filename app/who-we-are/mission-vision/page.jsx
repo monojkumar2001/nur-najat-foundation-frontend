@@ -3,6 +3,7 @@ import { WhoWeAreShell } from "@/components/whoWeAre/WhoWeAreShell";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
+  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
   title: "Mission & Vision | Nur and Najat Foundation",
   description:
     "NNF’s mission and vision for empowering youth, women and underserved communities in Panchagarh.",

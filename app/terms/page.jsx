@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/Layout/PageHeader";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
+  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
   title: "Terms | Nur and Najat Foundation",
   description: "Terms of use for the Nur and Najat Foundation website.",
 };

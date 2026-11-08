@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { DonateCheckoutForm } from "@/components/donate/DonateCheckoutForm";
 
 export const metadata = {
+  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
   title: "Checkout | Donate | Nur and Najat Foundation",
   description: "Complete your donation with contact and payment details.",
 };

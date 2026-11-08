@@ -9,6 +9,20 @@ import { GallerySection } from "@/components/home/GallerySection";
 import { JoinUsSection } from "@/components/home/JoinUsSection";
 import { Reveal } from "@/components/motion/Reveal";
 
+export const metadata = {
+  title: "Home | Nur and Najat Foundation",
+  description:
+    "Nur and Najat Foundation empowers communities in Bangladesh through education, healthcare, emergency response, and sustainable development programmes.",
+  keywords: [
+    "Nur and Najat Foundation",
+    "NNF Bangladesh",
+    "charity Bangladesh",
+    "education",
+    "healthcare",
+    "community development",
+  ],
+};
+
 export default function Home() {
   return (
     <>

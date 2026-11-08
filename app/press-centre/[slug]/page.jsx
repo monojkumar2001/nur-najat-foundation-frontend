@@ -18,8 +18,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const post = pressBySlug[slug];
-  if (!post) return { title: "Update not found" };
-  return { title: `${post.title} | Press Centre | Nur and Najat Foundation` };
+  if (!post) {
+    return {
+      title: "Update not found | Nur and Najat Foundation",
+      description: "The requested press-centre update could not be found.",
+      keywords: ["Nur and Najat Foundation", "press centre", "news update"],
+    };
+  }
+  return {
+    title: `${post.title} | Press Centre | Nur and Najat Foundation`,
+    description: post.summary || post.excerpt || "Latest press and media update from Nur and Najat Foundation.",
+    keywords: [post.title, "Nur and Najat Foundation", "press centre", "media update", "Bangladesh NGO"],
+  };
 }
 
 export default async function PressCentrePostPage({ params }) {

@@ -99,8 +99,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const post = posts[slug];
-  if (!post) return { title: "Post not found" };
-  return { title: `${post.title} | Nur and Najat Foundation` };
+  if (!post) {
+    return {
+      title: "Post not found | Nur and Najat Foundation",
+      description: "The requested blog post could not be found.",
+      keywords: ["Nur and Najat Foundation", "blog", "news"],
+    };
+  }
+  return {
+    title: `${post.title} | Nur and Najat Foundation`,
+    description: post.excerpt || "Read the latest news and updates from Nur and Najat Foundation.",
+    keywords: [post.title, "Nur and Najat Foundation", "community news", "Bangladesh NGO"],
+  };
 }
 
 export default async function BlogPostPage({ params }) {

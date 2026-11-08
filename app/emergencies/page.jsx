@@ -4,6 +4,7 @@ import { emergencyItems } from "@/lib/emergencies";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
+  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
   title: "Emergencies | Nur and Najat Foundation",
   description:
     "Emergency updates, response activities, and how Nur and Najat Foundation supports affected communities.",

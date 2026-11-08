@@ -3,6 +3,7 @@ import { BlogPostGrid } from "@/components/blog/BlogPostGrid";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
+  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
   title: "Blog & News | Nur and Najat Foundation",
   description: "Updates, events, and educational articles from the foundation.",
 };

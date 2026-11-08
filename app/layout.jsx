@@ -10,9 +10,29 @@ const inter = Inter({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://nurandnajatfoundation.org"),
   title: "Nur and Najat Foundation | Empowering Communities",
   description:
-    "Non-profit organization dedicated to education, healthcare, and community development.",
+    "Nur and Najat Foundation is a non-profit organization supporting education, healthcare, livelihoods, and community development in Bangladesh.",
+  keywords: [
+    "Nur and Najat Foundation",
+    "NNF Bangladesh",
+    "non-profit organization",
+    "NGO Bangladesh",
+    "education support",
+    "community development",
+  ],
+  applicationName: "Nur and Najat Foundation",
+  authors: [{ name: "Nur and Najat Foundation" }],
+  creator: "Nur and Najat Foundation",
+  publisher: "Nur and Najat Foundation",
+  icons: {
+    icon: [
+      { url: "/assets/images/favicon.png", type: "image/png", sizes: "32x32" },
+    ],
+    shortcut: ["/assets/images/favicon.png"],
+    apple: [{ url: "/assets/images/favicon.png", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({ children }) {

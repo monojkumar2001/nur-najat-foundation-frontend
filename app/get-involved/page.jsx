@@ -6,6 +6,7 @@ import { JoinUsSection } from "@/components/home/JoinUsSection";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
+  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
   title: "Get Involved | Nur and Najat Foundation",
   description:
     "Volunteer with Nur & Najat Foundation — support education, women’s development, healthcare, environment and community programmes.",

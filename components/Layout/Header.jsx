@@ -70,8 +70,7 @@ export function Header() {
     setDesktopWhoOpen(false);
   }, [pathname]);
 
-  const linkBase =
-    "text-base font-medium transition-colors whitespace-nowrap";
+  const linkBase = "text-base font-medium transition-colors whitespace-nowrap";
   const linkIdle = "text-neutral-900 hover:text-primary";
   const linkActive = "text-primary";
 
@@ -85,7 +84,7 @@ export function Header() {
           <Image
             src="/assets/images/logo.png"
             alt="Education"
-            width={160}
+            width={382}
             height={100}
             className="h-12 w-auto object-contain object-left sm:h-14"
             priority
@@ -97,55 +96,55 @@ export function Header() {
             className="flex items-center justify-end gap-6 lg:gap-8"
             aria-label="Main navigation"
           >
-          {navItems.map((item) => {
-            if (item.href) {
-              const active = isNavActive(pathname, item.href, item.end);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`${linkBase} ${active ? linkActive : linkIdle}`}
-                >
-                  {item.label}
-                </Link>
-              );
-            }
-
-            return (
-              <div key={item.label} className="relative" ref={whoRef}>
-                <button
-                  type="button"
-                  className={`${linkBase} ${linkIdle} cursor-pointer inline-flex items-center gap-1`}
-                  aria-expanded={desktopWhoOpen}
-                  aria-haspopup="true"
-                  onClick={() => setDesktopWhoOpen((v) => !v)}
-                >
-                  {item.label}
-                  <ChevronDown
-                    className={`h-4 w-4 shrink-0 transition-transform ${desktopWhoOpen ? "rotate-180" : ""}`}
-                  />
-                </button>
-                {desktopWhoOpen ? (
-                  <div
-                    className="absolute left-1/2 top-full z-50 mt-2 min-w-48 -translate-x-1/2 rounded-lg border border-neutral-200 bg-white py-2 shadow-lg"
-                    role="menu"
+            {navItems.map((item) => {
+              if (item.href) {
+                const active = isNavActive(pathname, item.href, item.end);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`${linkBase} ${active ? linkActive : linkIdle}`}
                   >
-                    {item.children.map((sub) => (
-                      <Link
-                        key={sub.href}
-                        href={sub.href}
-                        role="menuitem"
-                        className="block px-4 py-2 text-base text-neutral-800 hover:bg-neutral-50 hover:text-primary"
-                        onClick={() => setDesktopWhoOpen(false)}
-                      >
-                        {sub.label}
-                      </Link>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-            );
-          })}
+                    {item.label}
+                  </Link>
+                );
+              }
+
+              return (
+                <div key={item.label} className="relative" ref={whoRef}>
+                  <button
+                    type="button"
+                    className={`${linkBase} ${linkIdle} cursor-pointer inline-flex items-center gap-1`}
+                    aria-expanded={desktopWhoOpen}
+                    aria-haspopup="true"
+                    onClick={() => setDesktopWhoOpen((v) => !v)}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      className={`h-4 w-4 shrink-0 transition-transform ${desktopWhoOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  {desktopWhoOpen ? (
+                    <div
+                      className="absolute left-1/2 top-full z-50 mt-2 min-w-48 -translate-x-1/2 rounded-lg border border-neutral-200 bg-white py-2 shadow-lg"
+                      role="menu"
+                    >
+                      {item.children.map((sub) => (
+                        <Link
+                          key={sub.href}
+                          href={sub.href}
+                          role="menuitem"
+                          className="block px-4 py-2 text-base text-neutral-800 hover:bg-neutral-50 hover:text-primary"
+                          onClick={() => setDesktopWhoOpen(false)}
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            })}
           </nav>
 
           <div className="hidden shrink-0 md:block">
@@ -167,12 +166,32 @@ export function Header() {
         >
           <span className="sr-only">Menu</span>
           {mobileOpen ? (
-            <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="h-7 w-7"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           ) : (
-            <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+              className="h-7 w-7"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           )}
         </button>
@@ -187,62 +206,64 @@ export function Header() {
         }`}
         aria-hidden={!mobileOpen}
       >
-          <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
-            {navItems.map((item) => {
-              if (item.href) {
-                const active = isNavActive(pathname, item.href, item.end);
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`rounded-md px-3 py-2.5 text-base font-medium ${
-                      active ? "text-primary" : "text-neutral-900 hover:bg-neutral-50"
-                    }`}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              }
-
+        <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
+          {navItems.map((item) => {
+            if (item.href) {
+              const active = isNavActive(pathname, item.href, item.end);
               return (
-                <div key={item.label} className="flex flex-col">
-                  <button
-                    type="button"
-                    className="flex w-full items-center justify-between rounded-md px-3 py-2.5 text-left text-sm font-medium text-neutral-900 hover:bg-neutral-50"
-                    aria-expanded={mobileWhoOpen}
-                    onClick={() => setMobileWhoOpen((v) => !v)}
-                  >
-                    {item.label}
-                    <ChevronDown
-                      className={`h-4 w-4 shrink-0 transition-transform ${mobileWhoOpen ? "rotate-180" : ""}`}
-                    />
-                  </button>
-                  {mobileWhoOpen ? (
-                    <div className="ml-2 border-l-2 border-neutral-100 pl-2">
-                      {item.children.map((sub) => (
-                        <Link
-                          key={sub.href}
-                          href={sub.href}
-                          className="block rounded-md px-3 py-2 text-base text-neutral-700 hover:bg-neutral-50 hover:text-primary"
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </div>
-                  ) : null}
-                </div>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`rounded-md px-3 py-2.5 text-base font-medium ${
+                    active
+                      ? "text-primary"
+                      : "text-neutral-900 hover:bg-neutral-50"
+                  }`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {item.label}
+                </Link>
               );
-            })}
-            <Link
-              href="/donate"
-              className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-[#f5a623] px-6 py-3 text-base font-bold uppercase tracking-wide text-white hover:bg-[#e09010]"
-              onClick={() => setMobileOpen(false)}
-            >
-              Donate
-            </Link>
-          </nav>
+            }
+
+            return (
+              <div key={item.label} className="flex flex-col">
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-between rounded-md px-3 py-2.5 text-left text-sm font-medium text-neutral-900 hover:bg-neutral-50"
+                  aria-expanded={mobileWhoOpen}
+                  onClick={() => setMobileWhoOpen((v) => !v)}
+                >
+                  {item.label}
+                  <ChevronDown
+                    className={`h-4 w-4 shrink-0 transition-transform ${mobileWhoOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {mobileWhoOpen ? (
+                  <div className="ml-2 border-l-2 border-neutral-100 pl-2">
+                    {item.children.map((sub) => (
+                      <Link
+                        key={sub.href}
+                        href={sub.href}
+                        className="block rounded-md px-3 py-2 text-base text-neutral-700 hover:bg-neutral-50 hover:text-primary"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            );
+          })}
+          <Link
+            href="/donate"
+            className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-[#f5a623] px-6 py-3 text-base font-bold uppercase tracking-wide text-white hover:bg-[#e09010]"
+            onClick={() => setMobileOpen(false)}
+          >
+            Donate
+          </Link>
+        </nav>
       </div>
     </header>
   );
