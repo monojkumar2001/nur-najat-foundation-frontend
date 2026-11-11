@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/Layout/PageHeader";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
-import { contactSite } from "@/lib/contact";
+import { contactSite, fetchContactPage } from "@/lib/contact";
 import { hero } from "@/lib/unsplash";
 import { Clock, ExternalLink, Mail, MapPin, Phone, Share2 } from "lucide-react";
 
@@ -12,16 +12,39 @@ export const metadata = {
     "Contact NNF with questions, partnership enquiries, volunteer interest, or messages about our programmes.",
 };
 
-export default function ContactPage() {
-  const { addressLines, mapEmbedUrl, mapOpenUrl } = contactSite;
+export default async function ContactPage() {
+  const page = await fetchContactPage();
+
+  const heroTitle = page?.hero?.title || "Get in touch";
+  const heroDescription =
+    page?.hero?.description ||
+    "We welcome questions, ideas, partnership enquiries, volunteer interest and messages from communities, supporters and organizations.";
+  const heroImage = page?.hero?.image || hero.contact;
+
+  const intro = page?.intro || {};
+  const introParagraphs = intro.paragraphs || [];
+  const site = { ...contactSite, ...(page?.site || {}) };
+  const form = page?.form || {};
+
+  const {
+    addressLines,
+    mapEmbedUrl,
+    mapOpenUrl,
+    phoneDisplay,
+    phoneHref,
+    emailDisplay,
+    emailHref,
+    officeHours,
+    socialLinks,
+  } = site;
 
   return (
     <>
       <PageHeader
         eyebrow="Contact"
-        title="Get in touch"
-        description="We welcome questions, ideas, partnership enquiries, volunteer interest and messages from communities, supporters and organizations."
-        image={hero.contact}
+        title={heroTitle}
+        description={heroDescription}
+        image={heroImage}
         imageAlt="Contact and communication"
       />
 
@@ -29,33 +52,18 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
           <Reveal className="mb-12 w-full" y={14}>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Contact
+              {intro.eyebrow || "Contact"}
             </p>
             <h2 className="heading-font mt-3 text-2xl font-bold uppercase leading-tight text-slate-900 sm:text-3xl">
-              We are here to listen
+              {intro.title || "We are here to listen"}
             </h2>
-            <div className="mt-5 space-y-4 text-pretty text-base leading-relaxed text-slate-600 sm:text-lg">
-              <p>
-                We welcome questions, ideas, partnership enquiries, volunteer
-                interest and messages from communities, supporters and
-                organizations that want to learn more about our work. If you
-                would like information about a programme, want to collaborate
-                with NNF, or need guidance on how to participate, please contact
-                us through the official contact details provided on this page.
-              </p>
-              <p>
-                Our team aims to respond to enquiries respectfully and direct
-                them to the appropriate programme or department. For
-                programme-related support, applicants may be asked to provide
-                relevant information so that requests can be reviewed fairly and
-                according to the Foundation’s procedures.
-              </p>
-              <p>
-                Official address, telephone number, email address, office hours
-                and social media links are displayed below and will be updated
-                once confirmed by the Foundation.
-              </p>
-            </div>
+            {introParagraphs.length ? (
+              <div className="mt-5 space-y-4 text-pretty text-base leading-relaxed text-slate-600 sm:text-lg">
+                {introParagraphs.map((p) => (
+                  <p key={p.slice(0, 48)}>{p}</p>
+                ))}
+              </div>
+            ) : null}
           </Reveal>
 
           <div className="grid gap-10 lg:grid-cols-5 lg:items-start lg:gap-12">
@@ -94,7 +102,7 @@ export default function ContactPage() {
                       Address
                     </p>
                     <p className="mt-1.5 text-sm font-medium leading-relaxed text-slate-800">
-                      {addressLines.map((line) => (
+                      {(addressLines || []).map((line) => (
                         <span key={line} className="block">
                           {line}
                         </span>
@@ -105,7 +113,7 @@ export default function ContactPage() {
 
                 <div className="grid gap-3 sm:grid-cols-2">
                   <a
-                    href={contactSite.phoneHref}
+                    href={phoneHref}
                     className="group flex gap-4 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-sm ring-1 ring-slate-100 transition hover:border-primary/25 hover:shadow-md hover:ring-primary/10 sm:p-5"
                   >
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition group-hover:bg-primary/15">
@@ -116,12 +124,12 @@ export default function ContactPage() {
                         Telephone
                       </p>
                       <p className="mt-1 text-sm font-semibold text-slate-900 group-hover:text-primary sm:text-base">
-                        {contactSite.phoneDisplay}
+                        {phoneDisplay}
                       </p>
                     </div>
                   </a>
                   <a
-                    href={contactSite.emailHref}
+                    href={emailHref}
                     className="group flex gap-4 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-sm ring-1 ring-slate-100 transition hover:border-primary/25 hover:shadow-md hover:ring-primary/10 sm:p-5"
                   >
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition group-hover:bg-primary/15">
@@ -132,7 +140,7 @@ export default function ContactPage() {
                         Email
                       </p>
                       <p className="mt-1 break-all text-sm font-semibold text-slate-900 group-hover:text-primary sm:text-base">
-                        {contactSite.emailDisplay}
+                        {emailDisplay}
                       </p>
                     </div>
                   </a>
@@ -144,29 +152,30 @@ export default function ContactPage() {
                     Office hours
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-                    {contactSite.officeHours ??
-                      "To be confirmed by the Foundation."}
+                    {officeHours || "To be confirmed by the Foundation."}
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-slate-200/80 bg-white/80 px-4 py-5 shadow-sm ring-1 ring-slate-100 sm:px-6">
-                  <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
-                    <Share2 className="h-4 w-4 text-primary" aria-hidden />
-                    Social media
-                  </p>
-                  <ul className="mt-4 flex flex-wrap gap-2">
-                    {contactSite.socialLinks.map((s) => (
-                      <li key={s.label}>
-                        <a
-                          href={s.href}
-                          className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-primary/30 hover:text-primary"
-                        >
-                          {s.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {(socialLinks || []).length ? (
+                  <div className="rounded-2xl border border-slate-200/80 bg-white/80 px-4 py-5 shadow-sm ring-1 ring-slate-100 sm:px-6">
+                    <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
+                      <Share2 className="h-4 w-4 text-primary" aria-hidden />
+                      Social media
+                    </p>
+                    <ul className="mt-4 flex flex-wrap gap-2">
+                      {socialLinks.map((s) => (
+                        <li key={s.label}>
+                          <a
+                            href={s.href || "#"}
+                            className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-primary/30 hover:text-primary"
+                          >
+                            {s.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
               </div>
             </Reveal>
 
@@ -174,15 +183,14 @@ export default function ContactPage() {
               <div className="lg:sticky lg:top-28">
                 <div className="rounded-2xl border border-slate-200/90 bg-linear-to-b from-white to-slate-50/90 p-6 shadow-xl ring-1 ring-slate-200/55 sm:p-8">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                    Message us
+                    {form.eyebrow || "Message us"}
                   </p>
                   <h2 className="heading-font mt-2 text-xl font-bold text-slate-900 sm:text-2xl">
-                    Send a message
+                    {form.title || "Send a message"}
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600 sm:text-base">
-                    Programme questions, partnerships, volunteering, or
-                    community enquiries — tell us what you need and we will
-                    route it to the right person.
+                    {form.subtitle ||
+                      "Programme questions, partnerships, volunteering, or community enquiries — tell us what you need and we will route it to the right person."}
                   </p>
                   <div className="mt-6">
                     <ContactForm />
