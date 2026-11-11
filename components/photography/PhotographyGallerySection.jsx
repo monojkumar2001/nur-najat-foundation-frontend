@@ -2,13 +2,18 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import { Minus, Plus, X } from "lucide-react";
-import { photographyGalleryImages } from "@/lib/photography";
+import { ChevronLeft, ChevronRight, Minus, Plus, X } from "lucide-react";
 
 const INITIAL_COUNT = 12;
 
-export function PhotographyGallerySection() {
-  const items = photographyGalleryImages;
+export function PhotographyGallerySection({ images = [] }) {
+  const items = (images || [])
+    .filter((img) => img?.src || img?.image)
+    .map((img) => ({
+      id: img.id,
+      src: img.src || img.image,
+      alt: img.alt || img.title || "Gallery image",
+    }));
   const [expanded, setExpanded] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [zoom, setZoom] = useState(1);
@@ -20,16 +25,31 @@ export function PhotographyGallerySection() {
       : items.slice(0, INITIAL_COUNT)
     : items;
   const active = lightboxIndex !== null ? items[lightboxIndex] : null;
+  const hasMultiple = items.length > 1;
 
   const closeLightbox = useCallback(() => {
     setLightboxIndex(null);
     setZoom(1);
   }, []);
 
+  const goPrev = useCallback(() => {
+    setLightboxIndex((i) =>
+      i === null ? i : (i - 1 + items.length) % items.length,
+    );
+    setZoom(1);
+  }, [items.length]);
+
+  const goNext = useCallback(() => {
+    setLightboxIndex((i) => (i === null ? i : (i + 1) % items.length));
+    setZoom(1);
+  }, [items.length]);
+
   useEffect(() => {
     if (lightboxIndex === null) return;
     const onKey = (e) => {
       if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "ArrowRight") goNext();
     };
     document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
@@ -38,7 +58,7 @@ export function PhotographyGallerySection() {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
     };
-  }, [lightboxIndex, closeLightbox]);
+  }, [lightboxIndex, closeLightbox, goPrev, goNext]);
 
   return (
     <section className="scroll-mt-28" aria-labelledby="photography-gallery-heading">
@@ -128,28 +148,53 @@ export function PhotographyGallerySection() {
               </button>
             </div>
           </div>
-          <button
-            type="button"
-            className="flex min-h-0 flex-1 cursor-default items-center justify-center overflow-auto p-4"
-            onClick={closeLightbox}
-            aria-label="Close overlay"
-          >
-            <div
-              className="relative inline-block max-h-[85vh] max-w-[95vw] transition-transform duration-200 ease-out"
-              style={{ transform: `scale(${zoom})` }}
-              onClick={(e) => e.stopPropagation()}
-              role="presentation"
+
+          <div className="relative flex min-h-0 flex-1 items-center justify-center">
+            {hasMultiple ? (
+              <button
+                type="button"
+                onClick={goPrev}
+                className="absolute left-3 z-20 inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/25 backdrop-blur transition-colors hover:bg-white/25 sm:left-6"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="h-6 w-6" aria-hidden />
+              </button>
+            ) : null}
+
+            <button
+              type="button"
+              className="flex min-h-0 flex-1 cursor-default items-center justify-center overflow-auto p-4"
+              onClick={closeLightbox}
+              aria-label="Close overlay"
             >
-              <Image
-                src={active.src}
-                alt={active.alt}
-                width={1600}
-                height={1200}
-                className="max-h-[85vh] w-auto max-w-[95vw] object-contain"
-                unoptimized
-              />
-            </div>
-          </button>
+              <div
+                className="relative inline-block max-h-[85vh] max-w-[95vw] transition-transform duration-200 ease-out"
+                style={{ transform: `scale(${zoom})` }}
+                onClick={(e) => e.stopPropagation()}
+                role="presentation"
+              >
+                <Image
+                  src={active.src}
+                  alt={active.alt}
+                  width={1600}
+                  height={1200}
+                  className="max-h-[85vh] w-auto max-w-[95vw] object-contain"
+                  unoptimized
+                />
+              </div>
+            </button>
+
+            {hasMultiple ? (
+              <button
+                type="button"
+                onClick={goNext}
+                className="absolute right-3 z-20 inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/25 backdrop-blur transition-colors hover:bg-white/25 sm:right-6"
+                aria-label="Next image"
+              >
+                <ChevronRight className="h-6 w-6" aria-hidden />
+              </button>
+            ) : null}
+          </div>
         </div>
       ) : null}
     </section>

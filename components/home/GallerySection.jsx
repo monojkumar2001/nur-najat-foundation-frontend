@@ -1,41 +1,48 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { galleryGrid } from "@/lib/unsplash";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 
-const baseTitles = [
-  "Education",
-  "Health",
-  "Community",
-  "Livelihood",
-  "Volunteer",
-];
-
-export function GallerySection() {
+export function GallerySection({ items = [] }) {
   const slides = useMemo(
     () =>
-      galleryGrid.slice(0, 8).map((src, i) => ({
-        src,
-        title: baseTitles[i % baseTitles.length],
-      })),
-    [],
+      (items || [])
+        .filter((item) => item?.src || item?.image)
+        .map((item) => ({
+          id: item.id,
+          src: item.src || item.image,
+          title: item.title || item.alt || "Gallery",
+        })),
+    [items],
   );
 
-  const [active, setActive] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const active = activeIndex !== null ? slides[activeIndex] : null;
+  const hasMultiple = slides.length > 1;
+
+  const goPrev = () => {
+    setActiveIndex((i) =>
+      i === null ? i : (i - 1 + slides.length) % slides.length,
+    );
+  };
+
+  const goNext = () => {
+    setActiveIndex((i) => (i === null ? i : (i + 1) % slides.length));
+  };
 
   useEffect(() => {
-    if (!active) return;
+    if (activeIndex === null) return;
 
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     function onKeyDown(e) {
-      if (e.key === "Escape") setActive(null);
+      if (e.key === "Escape") setActiveIndex(null);
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "ArrowRight") goNext();
     }
 
     window.addEventListener("keydown", onKeyDown);
@@ -43,7 +50,11 @@ export function GallerySection() {
       window.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = prevOverflow;
     };
-  }, [active]);
+  }, [activeIndex, slides.length]);
+
+  if (!slides.length) {
+    return null;
+  }
 
   return (
     <section className="w-full bg-white py-16 sm:py-24">
@@ -65,7 +76,6 @@ export function GallerySection() {
       </div>
 
       <div className="mt-10 flex w-full flex-col gap-6">
-        {/* Left Slider */}
         <div className="gallery-marquee w-full overflow-hidden">
           <div className="gallery-marquee-track">
             {[false, true].map((duplicate) => (
@@ -77,8 +87,8 @@ export function GallerySection() {
                 {slides.map((slide, idx) => (
                   <button
                     type="button"
-                    key={`${duplicate ? "duplicate" : "original"}-${idx}-${slide.src}`}
-                    onClick={duplicate ? undefined : () => setActive(slide)}
+                    key={`${duplicate ? "duplicate" : "original"}-${slide.id || idx}-${slide.src}`}
+                    onClick={() => setActiveIndex(idx)}
                     tabIndex={duplicate ? -1 : 0}
                     className="gallery-marquee-slide group relative h-80 shrink-0 overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 text-left shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 cursor-pointer"
                     aria-label={duplicate ? undefined : `Open image: ${slide.title}`}
@@ -115,13 +125,37 @@ export function GallerySection() {
           aria-modal="true"
           aria-label="Gallery image modal"
           onMouseDown={(e) => {
-            if (e.target === e.currentTarget) setActive(null);
+            if (e.target === e.currentTarget) setActiveIndex(null);
           }}
         >
+          {hasMultiple ? (
+            <button
+              type="button"
+              onClick={goPrev}
+              className="absolute left-3 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/90 text-neutral-900 shadow-md backdrop-blur transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:left-6"
+              aria-label="Previous image"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="h-5 w-5"
+                aria-hidden
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+          ) : null}
+
           <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-xl">
             <button
               type="button"
-              onClick={() => setActive(null)}
+              onClick={() => setActiveIndex(null)}
               className="absolute cursor-pointer right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-neutral-900 shadow-sm backdrop-blur transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               aria-label="Close modal"
             >
@@ -152,6 +186,30 @@ export function GallerySection() {
               />
             </div>
           </div>
+
+          {hasMultiple ? (
+            <button
+              type="button"
+              onClick={goNext}
+              className="absolute right-3 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/90 text-neutral-900 shadow-md backdrop-blur transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:right-6"
+              aria-label="Next image"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="h-5 w-5"
+                aria-hidden
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          ) : null}
         </div>
       ) : null}
     </section>

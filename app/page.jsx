@@ -10,6 +10,7 @@ import { JoinUsSection } from "@/components/home/JoinUsSection";
 import { Reveal } from "@/components/motion/Reveal";
 import { fetchPrograms } from "@/lib/programs";
 import { fetchNews } from "@/lib/news";
+import { fetchGalleries } from "@/lib/gallery";
 
 export const metadata = {
   title: "Home | Nur and Najat Foundation",
@@ -26,7 +27,11 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const [programs, news] = await Promise.all([fetchPrograms(), fetchNews()]);
+  const [programs, news, galleries] = await Promise.all([
+    fetchPrograms(),
+    fetchNews(),
+    fetchGalleries({ limit: 8 }),
+  ]);
 
   return (
     <>
@@ -50,7 +55,7 @@ export default async function Home() {
         <LatestNews posts={news} />
       </Reveal>
       <Reveal delay={0.04}>
-        <GallerySection />
+        <GallerySection items={galleries} />
       </Reveal>
       <Reveal delay={0.04}>
         <JoinUsSection />
