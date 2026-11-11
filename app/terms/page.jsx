@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { PageHeader } from "@/components/Layout/PageHeader";
+import { fetchTermsPage } from "@/lib/terms";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
@@ -8,106 +8,44 @@ export const metadata = {
   description: "Terms of use for the Nur and Najat Foundation website.",
 };
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const page = await fetchTermsPage();
+
+  const eyebrow = page?.hero?.eyebrow || "Legal";
+  const title = page?.hero?.title || "Terms of use";
+  const description =
+    page?.hero?.description ||
+    "Rules for using our website, content, and communications.";
+  const image = page?.hero?.image || hero.press;
+  const lastUpdated = page?.lastUpdated || "April 10, 2026";
+  const content = page?.content || "";
+
   return (
     <>
       <PageHeader
-        eyebrow="Legal"
-        title="Terms of use"
-        description="Rules for using our website, content, and communications."
-        image={hero.press}
-        imageAlt="Press and announcements"
+        eyebrow={eyebrow}
+        title={title}
+        description={description}
+        image={image}
+        imageAlt="Terms of use"
       />
 
       <div className="relative -mt-6 overflow-hidden rounded-t-3xl pb-10 bg-white pt-10 shadow-sm ring-1 ring-slate-200/80">
         <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-6 lg:px-8 lg:py-6">
           <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm ring-1 ring-slate-100 sm:p-8">
             <p className="text-sm text-slate-600">
-              Last updated: <span className="font-semibold text-slate-900">April 10, 2026</span>
+              Last updated:{" "}
+              <span className="font-semibold text-slate-900">{lastUpdated}</span>
             </p>
 
-            <div className="mt-8 space-y-8 text-base leading-relaxed text-slate-700">
-              <section className="space-y-3">
-                <h2 className="heading-font text-xl font-bold text-slate-900">Agreement</h2>
-                <p>
-                  By accessing or using the Nur and Najat Foundation (“NNF”) website, you agree to
-                  these terms. If you do not agree, please do not use the site.
-                </p>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="heading-font text-xl font-bold text-slate-900">Information accuracy</h2>
-                <p>
-                  We aim to keep information accurate and up to date, but content may change without
-                  notice. Materials are provided for general information and do not constitute legal,
-                  financial, or professional advice.
-                </p>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="heading-font text-xl font-bold text-slate-900">Use of the website</h2>
-                <ul className="list-disc space-y-2 pl-5 marker:text-primary">
-                  <li>Do not attempt to disrupt, hack, scrape, or misuse the site or its services.</li>
-                  <li>Do not use the site in any way that violates applicable laws or regulations.</li>
-                  <li>Do not misrepresent your affiliation with NNF.</li>
-                </ul>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="heading-font text-xl font-bold text-slate-900">Donations &amp; forms</h2>
-                <p>
-                  Any donation or form submission flows are provided for convenience. Processing,
-                  receipts, and compliance requirements may depend on your location and the channel
-                  used. Replace this section with your final policy text from your finance/legal team.
-                </p>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="heading-font text-xl font-bold text-slate-900">Intellectual property</h2>
-                <p>
-                  Unless otherwise stated, website content (text, branding, images, layout) is owned by
-                  NNF or used with permission. Do not copy, distribute, or reuse materials without
-                  written consent.
-                </p>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="heading-font text-xl font-bold text-slate-900">Limitation of liability</h2>
-                <p>
-                  To the fullest extent permitted by law, NNF is not liable for any indirect or
-                  consequential damages arising from your use of the website. Replace with counsel-approved
-                  wording for your jurisdiction.
-                </p>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="heading-font text-xl font-bold text-slate-900">Contact</h2>
-                <p>
-                  Questions about these terms? Email{" "}
-                  <a
-                    href="mailto:hello@nurnajatfoundation.org"
-                    className="font-semibold text-primary underline-offset-4 hover:underline"
-                  >
-                    hello@nurnajatfoundation.org
-                  </a>
-                  .
-                </p>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="heading-font text-xl font-bold text-slate-900">Privacy</h2>
-                <p>
-                  See our{" "}
-                  <Link
-                    href="/privacy"
-                    className="font-semibold text-primary underline-offset-4 hover:underline"
-                  >
-                    Privacy policy
-                  </Link>
-                  .
-                </p>
-              </section>
-            </div>
+            {content ? (
+              <div
+                className="prose prose-slate mt-8 max-w-none prose-headings:heading-font prose-headings:font-bold prose-headings:text-slate-900 prose-p:leading-relaxed prose-p:text-slate-700 prose-li:marker:text-primary prose-a:font-semibold prose-a:text-primary prose-a:underline-offset-4 hover:prose-a:underline"
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
+            ) : (
+              <p className="mt-8 text-slate-600">Terms content is not available yet.</p>
+            )}
           </div>
         </div>
       </div>
