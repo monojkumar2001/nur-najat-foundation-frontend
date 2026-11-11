@@ -1,5 +1,6 @@
 import MissionVision from "@/components/whoWeAre/MissionVision";
 import { WhoWeAreShell } from "@/components/whoWeAre/WhoWeAreShell";
+import { fetchMissionVisionPage } from "@/lib/mission-vision";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
@@ -9,16 +10,30 @@ export const metadata = {
     "NNF’s mission and vision for empowering youth, women and underserved communities in Panchagarh.",
 };
 
-export default function MissionVisionPage() {
+export default async function MissionVisionPage() {
+  const page = await fetchMissionVisionPage();
+
+  const eyebrow = page?.hero?.eyebrow || "Who we are";
+  const title = page?.hero?.title || "Mission & vision";
+  const description =
+    page?.hero?.description ||
+    "Opportunity, dignity and lasting change—responding to urgent needs today while strengthening communities for tomorrow.";
+  const image = page?.hero?.image || hero.about;
+
   return (
     <WhoWeAreShell
-      eyebrow="Who we are"
-      title="Mission & vision"
-      description="Opportunity, dignity and lasting change—responding to urgent needs today while strengthening communities for tomorrow."
-      image={hero.about}
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+      image={image}
       imageAlt="Community learning and youth leadership"
     >
-      <MissionVision />
+      <MissionVision
+        intro={page?.intro}
+        side={page?.side}
+        mission={page?.mission}
+        vision={page?.vision}
+      />
     </WhoWeAreShell>
   );
 }
