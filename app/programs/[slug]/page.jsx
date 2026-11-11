@@ -1,14 +1,14 @@
 import { notFound } from "next/navigation";
 import { ProgramDetail } from "@/components/programs/ProgramDetail";
-import { getProgramBySlug, getProgramSlugs } from "@/lib/programs";
+import { fetchProgramBySlug } from "@/lib/programs";
 
-export async function generateStaticParams() {
-  return getProgramSlugs().map((slug) => ({ slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const program = getProgramBySlug(slug);
+  const data = await fetchProgramBySlug(slug);
+  const program = data?.program;
+
   if (!program) {
     return {
       title: "Program | Nur and Najat Foundation",
@@ -16,16 +16,30 @@ export async function generateMetadata({ params }) {
       keywords: ["NNF programmes", "Bangladesh NGO programmes", "community development"],
     };
   }
+
   return {
     title: `${program.shortTitle} | Nur and Najat Foundation`,
     description: program.summary,
-    keywords: [program.shortTitle, "Nur and Najat Foundation", "NNF programme", "Bangladesh community programme"],
+    keywords: [
+      program.shortTitle,
+      "Nur and Najat Foundation",
+      "NNF programme",
+      "Bangladesh community programme",
+    ],
   };
 }
 
 export default async function ProgramPage({ params }) {
   const { slug } = await params;
-  const program = getProgramBySlug(slug);
-  if (!program) notFound();
-  return <ProgramDetail program={program} />;
+  const data = await fetchProgramBySlug(slug);
+
+  if (!data?.program) notFound();
+
+  return (
+    <ProgramDetail
+      program={data.program}
+      prev={data.prev}
+      next={data.next}
+    />
+  );
 }

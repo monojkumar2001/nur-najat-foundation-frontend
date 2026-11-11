@@ -8,6 +8,7 @@ import { LatestNews } from "@/components/home/LatestNews";
 import { GallerySection } from "@/components/home/GallerySection";
 import { JoinUsSection } from "@/components/home/JoinUsSection";
 import { Reveal } from "@/components/motion/Reveal";
+import { fetchPrograms } from "@/lib/programs";
 
 export const metadata = {
   title: "Home | Nur and Najat Foundation",
@@ -23,7 +24,9 @@ export const metadata = {
   ],
 };
 
-export default function Home() {
+export default async function Home() {
+  const programs = await fetchPrograms();
+
   return (
     <>
       <Hero />
@@ -31,7 +34,7 @@ export default function Home() {
         <AboutSection />
       </Reveal>
       <Reveal delay={0.04}>
-        <ProgramsSection />
+        <ProgramsSection programs={programs} />
       </Reveal>
       <Reveal delay={0.04}>
         <StatsBar />

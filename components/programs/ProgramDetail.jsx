@@ -5,16 +5,11 @@ import { PageHeader } from "@/components/Layout/PageHeader";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { JoinUsSection } from "@/components/home/JoinUsSection";
 import { Reveal } from "@/components/motion/Reveal";
-import { programs } from "@/lib/programs";
-import { getProgramHeroImage } from "@/lib/unsplash";
+import { hero } from "@/lib/unsplash";
 
-export function ProgramDetail({ program }) {
-  const currentIndex = programs.findIndex((p) => p.slug === program.slug);
-  const prev = currentIndex > 0 ? programs[currentIndex - 1] : null;
-  const next =
-    currentIndex >= 0 && currentIndex < programs.length - 1
-      ? programs[currentIndex + 1]
-      : null;
+export function ProgramDetail({ program, prev = null, next = null }) {
+  const heroImage = program.heroImage || program.image || hero.programs;
+  const sections = Array.isArray(program.sections) ? program.sections : [];
 
   return (
     <>
@@ -22,8 +17,8 @@ export function ProgramDetail({ program }) {
         eyebrow={program.eyebrow}
         title={program.title}
         description={program.summary}
-        image={getProgramHeroImage(program.slug)}
-        imageAlt={program.imageAlt}
+        image={heroImage}
+        imageAlt={program.imageAlt || program.title}
       />
 
       <div className="relative -mt-6 overflow-hidden rounded-t-3xl bg-white shadow-sm ring-1 ring-slate-200/80">
@@ -41,14 +36,16 @@ export function ProgramDetail({ program }) {
           <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-12">
             <Reveal className="lg:col-span-5" y={18}>
               <div className="relative aspect-[4/3] overflow-hidden rounded-[1.25rem] shadow-xl ring-1 ring-slate-200/60">
-                <Image
-                  src={program.image}
-                  alt={program.imageAlt}
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  priority
-                />
+                {program.image ? (
+                  <Image
+                    src={program.image}
+                    alt={program.imageAlt || program.title}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 40vw, 100vw"
+                    priority
+                  />
+                ) : null}
                 <div
                   className="pointer-events-none absolute inset-0 bg-linear-to-t from-slate-900/50 via-slate-900/10 to-transparent"
                   aria-hidden
@@ -72,7 +69,7 @@ export function ProgramDetail({ program }) {
 
             <Reveal className="lg:col-span-7" delay={0.05} y={18}>
               <div className="space-y-10">
-                {program.sections.map((section, idx) => (
+                {sections.map((section, idx) => (
                   <div key={section.title ?? `section-${idx}`}>
                     {section.title ? (
                       <h2 className="heading-font text-xl font-bold uppercase text-slate-900 sm:text-2xl">
@@ -82,9 +79,16 @@ export function ProgramDetail({ program }) {
                     <div
                       className={`${section.title ? "mt-4" : ""} space-y-4 text-base leading-relaxed text-muted sm:text-lg`}
                     >
-                      {section.paragraphs.map((p) => (
-                        <p key={p.slice(0, 56)}>{p}</p>
-                      ))}
+                      {section.content ? (
+                        <div
+                          className="prose prose-slate max-w-none prose-p:my-4 prose-p:leading-relaxed"
+                          dangerouslySetInnerHTML={{ __html: section.content }}
+                        />
+                      ) : (
+                        (section.paragraphs || []).map((p) => (
+                          <p key={p.slice(0, 56)}>{p}</p>
+                        ))
+                      )}
                     </div>
                   </div>
                 ))}

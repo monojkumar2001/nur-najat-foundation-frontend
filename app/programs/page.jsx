@@ -2,18 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHeader } from "@/components/Layout/PageHeader";
 import { Reveal } from "@/components/motion/Reveal";
-import { programs } from "@/lib/programs";
+import { fetchPrograms } from "@/lib/programs";
 import { hero } from "@/lib/unsplash";
 import { ArrowRight } from "lucide-react";
 
 export const metadata = {
-  keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
+  keywords: ["Nur and Najat Foundation", "community development", "Bangladesh NGO"],
   title: "Programs | Nur and Najat Foundation",
   description:
     "Explore NNF programmes in education, health, solar lighting, WASH, environment and women’s empowerment.",
 };
 
-export default function ProgramsPage() {
+export default async function ProgramsPage() {
+  const programs = await fetchPrograms();
+
   return (
     <>
       <PageHeader
@@ -34,20 +36,22 @@ export default function ProgramsPage() {
                   className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-md ring-1 ring-slate-200/50 transition hover:-translate-y-1 hover:shadow-xl motion-reduce:transform-none"
                 >
                   <div className="relative aspect-16/10 overflow-hidden">
-                    <Image
-                      src={p.image}
-                      alt={p.imageAlt}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    />
+                    {p.image ? (
+                      <Image
+                        src={p.image}
+                        alt={p.imageAlt || p.cardTitle || p.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      />
+                    ) : null}
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <p className="text-xs font-semibold uppercase tracking-wide text-primary">
                       {p.eyebrow}
                     </p>
                     <h2 className="heading-font mt-2 text-xl font-bold uppercase text-slate-900">
-                      {p.cardTitle}
+                      {p.cardTitle || p.title}
                     </h2>
                     <p className="mt-3 flex-1 text-base leading-relaxed text-muted">
                       {p.summary}
