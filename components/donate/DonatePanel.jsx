@@ -4,12 +4,15 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Heart, Lock } from "lucide-react";
 
-const amounts = ["25", "50", "100", "250"];
-
-export function DonatePanel() {
+export function DonatePanel({
+  amounts = ["25", "50", "100", "250"],
+  title = "Make a donation",
+  subtitle = "Secure checkout powered by Stripe.",
+  stripeConfigured = false,
+}) {
   const router = useRouter();
   const [mode, setMode] = useState("once");
-  const [amount, setAmount] = useState("50");
+  const [amount, setAmount] = useState(amounts[1] || amounts[0] || "50");
   const [custom, setCustom] = useState("");
 
   const displayAmount = useMemo(() => {
@@ -27,11 +30,9 @@ export function DonatePanel() {
         </span>
         <div>
           <h3 className="heading-font text-lg font-bold text-slate-900 sm:text-xl">
-            Make a donation
+            {title}
           </h3>
-          <p className="mt-1 text-sm text-slate-600">
-            Secure checkout can be connected to Stripe, PayPal, or your bank.
-          </p>
+          <p className="mt-1 text-sm text-slate-600">{subtitle}</p>
         </div>
       </div>
 
@@ -115,7 +116,7 @@ export function DonatePanel() {
         className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-4 text-sm font-bold uppercase tracking-wide text-white shadow-md transition hover:bg-accent-dark hover:shadow-lg active:scale-[0.99] motion-reduce:active:scale-100"
         onClick={() =>
           router.push(
-            `/donate/checkout?amount=${encodeURIComponent(displayAmount)}&mode=${encodeURIComponent(mode)}`
+            `/donate/checkout?amount=${encodeURIComponent(displayAmount)}&mode=${encodeURIComponent(mode)}`,
           )
         }
       >
@@ -125,7 +126,9 @@ export function DonatePanel() {
 
       <p className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-slate-500">
         <Lock className="h-3.5 w-3.5 shrink-0 text-slate-400" aria-hidden />
-        Demo only — no payment is processed. Connect your provider to go live.
+        {stripeConfigured
+          ? "Secure payment via Stripe Checkout."
+          : "Stripe demo mode — add STRIPE_SECRET test key to go live with Stripe test cards."}
       </p>
     </div>
   );
