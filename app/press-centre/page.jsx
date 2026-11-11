@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/Layout/PageHeader";
 import { PressListing } from "@/components/press/PressListing";
 import { hero } from "@/lib/unsplash";
-import { pressItems } from "@/lib/press";
+import { fetchPressReleases } from "@/lib/press";
 
 export const metadata = {
   keywords: ['Nur and Najat Foundation', 'community development', 'Bangladesh NGO'],
@@ -9,7 +9,8 @@ export const metadata = {
   description: "Press releases, announcements, and official updates from NNF.",
 };
 
-export default function PressCentrePage() {
+export default async function PressCentrePage() {
+  const pressItems = await fetchPressReleases();
   const posts = pressItems.map((p) => ({
     slug: p.slug,
     title: p.title,
