@@ -1,5 +1,6 @@
 import WorkWithUs from "@/components/whoWeAre/WorkWithUs";
 import { WhoWeAreShell } from "@/components/whoWeAre/WhoWeAreShell";
+import { fetchWorkWithUsPage } from "@/lib/work-with-us";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
@@ -9,16 +10,29 @@ export const metadata = {
     "Join NNF as a professional, volunteer or community supporter—roles built on service, accountability and inclusion.",
 };
 
-export default function WorkWithUsPage() {
+export default async function WorkWithUsPage() {
+  const page = await fetchWorkWithUsPage();
+
+  const eyebrow = page?.hero?.eyebrow || "Who we are";
+  const title = page?.hero?.title || "Work with us";
+  const description =
+    page?.hero?.description ||
+    "Meaningful social change needs people with different skills, experiences and perspectives. Build with us.";
+  const image = page?.hero?.image || hero.getInvolved;
+
   return (
     <WhoWeAreShell
-      eyebrow="Who we are"
-      title="Work with us"
-      description="Meaningful social change needs people with different skills, experiences and perspectives. Build with us."
-      image={hero.getInvolved}
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+      image={image}
       imageAlt="People collaborating for community change"
     >
-      <WorkWithUs />
+      <WorkWithUs
+        intro={page?.intro}
+        paragraphs={page?.paragraphs}
+        cta={page?.cta}
+      />
     </WhoWeAreShell>
   );
 }

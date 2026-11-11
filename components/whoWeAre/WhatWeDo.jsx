@@ -7,9 +7,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { EASE, DURATION } from "@/lib/motion";
 
-const heroImage = "/assets/images/whatwedo.png";
-
-const programmes = [
+const DEFAULT_PROGRAMMES = [
   {
     title: "Education & Scholarship",
     description:
@@ -44,7 +42,27 @@ const programmes = [
 
 const view = { once: true, amount: 0.15 };
 
-export default function WhatWeDo() {
+export default function WhatWeDo({
+  intro,
+  cta,
+  side,
+  programmes,
+  footerText,
+} = {}) {
+  const eyebrow = intro?.eyebrow || "What we do";
+  const title = intro?.title || "Programmes that strengthen community life";
+  const subtitle =
+    intro?.subtitle ||
+    "NNF works across interconnected areas of community life because health, education, safety, opportunity and dignity reinforce one another. Our programmes are designed to respond to immediate needs while contributing to stronger and more resilient communities over time.";
+  const ctaLabel = cta?.label || "How we do it";
+  const ctaHref = cta?.href || "/who-we-are/how-we-do-it";
+  const sideImage = side?.image || "/assets/images/whatwedo.png";
+  const sideAlt = side?.alt || "Community support through NNF programmes";
+  const items = programmes?.length ? programmes : DEFAULT_PROGRAMMES;
+  const footer =
+    footerText ||
+    "Our broader social welfare work may also include youth engagement, skills development, livelihood support, sustainable agriculture, reading and knowledge initiatives, sports and other community-based activities where these respond to identified local needs.";
+
   return (
     <section aria-labelledby="what-we-do-heading">
       <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-10">
@@ -56,20 +74,20 @@ export default function WhatWeDo() {
           transition={{ duration: DURATION.section, ease: EASE }}
         >
           <SectionHeading
-            eyebrow="What we do"
-            title="Programmes that strengthen community life"
+            eyebrow={eyebrow}
+            title={title}
             titleId="what-we-do-heading"
-            subtitle="NNF works across interconnected areas of community life because health, education, safety, opportunity and dignity reinforce one another. Our programmes are designed to respond to immediate needs while contributing to stronger and more resilient communities over time."
+            subtitle={subtitle}
             align="left"
             className="max-w-none"
           />
           <div className="mt-6">
             <ButtonLink
-              href="/who-we-are/how-we-do-it"
+              href={ctaHref}
               variant="outlineDark"
               className="px-5 py-2 text-sm normal-case"
             >
-              How we do it
+              {ctaLabel}
               <ArrowRight className="ml-2 h-4 w-4" aria-hidden />
             </ButtonLink>
           </div>
@@ -85,8 +103,8 @@ export default function WhatWeDo() {
           <div className="group relative overflow-hidden rounded-2xl bg-slate-100 shadow-md ring-1 ring-slate-200/80">
             <div className="relative aspect-[4/3]">
               <Image
-                src={heroImage}
-                alt="Community support through NNF programmes"
+                src={sideImage}
+                alt={sideAlt}
                 fill
                 className="object-cover transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.06]"
                 sizes="(min-width: 1024px) 40vw, 100vw"
@@ -97,7 +115,7 @@ export default function WhatWeDo() {
       </div>
 
       <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3">
-        {programmes.map((item, idx) => (
+        {items.map((item, idx) => (
           <motion.li
             key={item.title}
             className="rounded-xl border border-slate-100 bg-slate-50/80 p-5"
@@ -127,10 +145,7 @@ export default function WhatWeDo() {
         viewport={view}
         transition={{ duration: DURATION.section, ease: EASE }}
       >
-        Our broader social welfare work may also include youth engagement,
-        skills development, livelihood support, sustainable agriculture, reading
-        and knowledge initiatives, sports and other community-based activities
-        where these respond to identified local needs.
+        {footer}
       </motion.p>
     </section>
   );

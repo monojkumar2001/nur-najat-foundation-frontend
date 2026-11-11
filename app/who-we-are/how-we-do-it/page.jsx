@@ -1,5 +1,6 @@
 import HowWeDoIt from "@/components/whoWeAre/HowWeDoIt";
 import { WhoWeAreShell } from "@/components/whoWeAre/WhoWeAreShell";
+import { fetchHowWeDoItPage } from "@/lib/how-we-do-it";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
@@ -9,16 +10,29 @@ export const metadata = {
     "How NNF listens to communities, designs accessible programmes, and works with respect, partnership and accountability.",
 };
 
-export default function HowWeDoItPage() {
+export default async function HowWeDoItPage() {
+  const page = await fetchHowWeDoItPage();
+
+  const eyebrow = page?.hero?.eyebrow || "Who we are";
+  const title = page?.hero?.title || "How we do it";
+  const description =
+    page?.hero?.description ||
+    "Listening first. Acting with respect—practical interventions rooted in accessibility, participation and capacity.";
+  const image = page?.hero?.image || hero.getInvolved;
+
   return (
     <WhoWeAreShell
-      eyebrow="Who we are"
-      title="How we do it"
-      description="Listening first. Acting with respect—practical interventions rooted in accessibility, participation and capacity."
-      image={hero.getInvolved}
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+      image={image}
       imageAlt="Community engagement and partnership"
     >
-      <HowWeDoIt />
+      <HowWeDoIt
+        intro={page?.intro}
+        side={page?.side}
+        paragraphs={page?.paragraphs}
+      />
     </WhoWeAreShell>
   );
 }
