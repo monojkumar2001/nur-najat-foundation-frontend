@@ -31,15 +31,17 @@ export function BlogPostGrid({ posts }) {
           >
             <Link
               href={`/blog/${post.slug}`}
-              className="relative aspect-16/10 block overflow-hidden"
+              className="relative aspect-16/10 block overflow-hidden bg-slate-100"
             >
-              <Image
-                src={post.image}
-                alt=""
-                fill
-                className="object-cover transition-transform duration-500 motion-reduce:transform-none group-hover:scale-105"
-                sizes="(min-width: 1024px) 33vw, 50vw"
-              />
+              {post.image ? (
+                <Image
+                  src={post.image}
+                  alt={post.title || ""}
+                  fill
+                  className="object-cover transition-transform duration-500 motion-reduce:transform-none group-hover:scale-105"
+                  sizes="(min-width: 1024px) 33vw, 50vw"
+                />
+              ) : null}
             </Link>
             <div className="flex flex-1 flex-col p-6">
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-slate-500">
