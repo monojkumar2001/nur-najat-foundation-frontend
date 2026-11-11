@@ -2,23 +2,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { RelatedEmergencyCard } from "@/components/emergencies/RelatedEmergencyCard";
-import { emergenciesBySlug, emergencyItems } from "@/lib/emergencies";
+import { fetchEmergencyBySlug } from "@/lib/emergencies";
+
+export const dynamic = "force-dynamic";
 
 function getReadMinutes(text) {
   const words = String(text ?? "")
+    .replace(/<[^>]*>/g, " ")
     .trim()
     .split(/\s+/)
     .filter(Boolean).length;
   return Math.max(1, Math.round(words / 200));
 }
 
-export async function generateStaticParams() {
-  return emergencyItems.map((p) => ({ slug: p.slug }));
-}
-
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const post = emergenciesBySlug[slug];
+  const post = await fetchEmergencyBySlug(slug);
   if (!post) {
     return {
       title: "Update not found | Nur and Najat Foundation",
@@ -28,26 +27,21 @@ export async function generateMetadata({ params }) {
   }
   return {
     title: `${post.title} | Emergencies | Nur and Najat Foundation`,
-    description: post.summary || post.excerpt || "Emergency response update from Nur and Najat Foundation.",
+    description: post.excerpt || "Emergency response update from Nur and Najat Foundation.",
     keywords: [post.title, "Nur and Najat Foundation", "emergency response", "humanitarian aid", "Bangladesh"],
   };
 }
 
 export default async function EmergencyPostPage({ params }) {
   const { slug } = await params;
-  const post = emergenciesBySlug[slug];
+  const post = await fetchEmergencyBySlug(slug);
   if (!post) notFound();
 
-  const blocks = post.blocks ?? [];
-  const readMinutes = getReadMinutes(
-    blocks
-      .map((b) => (b?.type === "p" || b?.type === "h2" ? b?.text : ""))
-      .filter(Boolean)
-      .join(" ")
-  );
-  const category = post.category ?? "Emergency update";
-  const author = post.author ?? "Nur and Najat Foundation";
-  const relatedEmergencies = emergencyItems.filter((e) => e.slug !== slug);
+  const readMinutes = getReadMinutes(post.content || post.excerpt || "");
+  const category = post.category || "Emergency update";
+  const author = post.author || "Nur and Najat Foundation";
+  const cover = post.cover || post.image;
+  const relatedEmergencies = Array.isArray(post.related) ? post.related : [];
 
   return (
     <article className="bg-white">
@@ -73,77 +67,30 @@ export default async function EmergencyPostPage({ params }) {
         </div>
       </header>
 
-      <div className="mx-auto mt-8 max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative aspect-21/9 overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-200/70">
-          <Image
-            src={post.cover}
-            alt={post.title}
-            fill
-            className="object-cover"
-            priority
-            sizes="(min-width: 1024px) 960px, 100vw"
-          />
+      {cover ? (
+        <div className="mx-auto mt-8 max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="relative aspect-21/9 overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-200/70">
+            <Image
+              src={cover}
+              alt={post.title}
+              fill
+              className="object-cover"
+              priority
+              sizes="(min-width: 1024px) 960px, 100vw"
+            />
+          </div>
         </div>
-      </div>
+      ) : null}
 
       <div className="mx-auto max-w-6xl space-y-6 px-4 py-12 sm:px-6 lg:px-8">
-        {blocks.map((block, i) => {
-          if (!block) return null;
-
-          if (block.type === "h2") {
-            return (
-              <h2
-                key={`h2-${i}`}
-                className="heading-font pt-3 text-lg font-bold uppercase tracking-wide text-slate-900 sm:text-xl"
-              >
-                {block.text}
-              </h2>
-            );
-          }
-
-          if (block.type === "image") {
-            return (
-              <figure
-                key={`img-${i}`}
-                className="overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-200/70"
-              >
-                <div className="relative aspect-video">
-                  <Image
-                    src={block.src}
-                    alt={block.alt ?? ""}
-                    fill
-                    className="object-cover"
-                    sizes="(min-width: 1024px) 768px, 100vw"
-                  />
-                </div>
-                {block.caption ? (
-                  <figcaption className="px-5 py-4 text-sm text-slate-500">
-                    {block.caption}
-                  </figcaption>
-                ) : null}
-              </figure>
-            );
-          }
-
-          if (block.type === "ul") {
-            return (
-              <ul
-                key={`ul-${i}`}
-                className="list-disc space-y-2 pl-5 text-base leading-relaxed text-slate-700 marker:text-primary"
-              >
-                {(block.items ?? []).map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            );
-          }
-
-          return (
-            <p key={`p-${i}`} className="text-base leading-relaxed text-slate-700">
-              {block.text}
-            </p>
-          );
-        })}
+        {post.content ? (
+          <div
+            className="prose prose-slate max-w-none prose-p:my-4 prose-p:leading-relaxed prose-headings:heading-font prose-headings:uppercase prose-li:marker:text-primary prose-img:rounded-2xl"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+        ) : post.excerpt ? (
+          <p className="text-base leading-relaxed text-slate-700">{post.excerpt}</p>
+        ) : null}
       </div>
 
       {relatedEmergencies.length ? (

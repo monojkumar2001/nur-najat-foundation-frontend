@@ -1,6 +1,6 @@
 import { PageHeader } from "@/components/Layout/PageHeader";
 import { EmergencyListing } from "@/components/emergencies/EmergencyListing";
-import { emergencyItems } from "@/lib/emergencies";
+import { fetchEmergencies } from "@/lib/emergencies";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
@@ -10,7 +10,8 @@ export const metadata = {
     "Emergency updates, response activities, and how Nur and Najat Foundation supports affected communities.",
 };
 
-export default function EmergenciesPage() {
+export default async function EmergenciesPage() {
+  const emergencyItems = await fetchEmergencies();
   const posts = emergencyItems.map((p) => ({
     slug: p.slug,
     title: p.title,
