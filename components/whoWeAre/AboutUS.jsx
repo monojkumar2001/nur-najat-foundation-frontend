@@ -12,7 +12,33 @@ const view = {
   amount: 0.15,
 };
 
-export function AboutUS() {
+const DEFAULT_PARAGRAPHS = [
+  "NNF was founded on the understanding that poverty and vulnerability are rarely caused by a single problem. A family may struggle with income while also facing poor access to healthcare. A talented student may be forced to leave education because of financial hardship. A woman may have the ability and determination to become self-reliant but lack access to information, training, healthcare or a supportive platform. A village may have active students and workers, yet unsafe roads and insufficient lighting can restrict mobility after dark.",
+  "Our response is therefore designed around people rather than isolated problems. We work to connect humanitarian support with education, health, skills, community infrastructure, environmental responsibility and opportunities for participation. This integrated approach reflects our belief that sustainable development becomes possible when communities are supported from multiple directions and when people are treated as partners in change rather than passive recipients of assistance.",
+  "The Foundation gives special attention to women, young people, students and families facing social or economic disadvantage. Our goal is not simply to count activities. We want to see what those activities make possible: a woman who feels heard and supported, a student who can continue learning, a family that gains greater stability, a young person who discovers purpose, or a community that becomes safer and more resilient.",
+  "NNF remains rooted in charitable values, but our ambition goes beyond charity. We seek to strengthen human dignity, equality of opportunity, community participation and self-reliance. True change is rarely created by one act of assistance. It grows through consistent support, trust, local participation and the belief that every person deserves the opportunity to build a better future.",
+];
+
+export function AboutUS({
+  intro,
+  side,
+  paragraphs,
+  cta,
+} = {}) {
+  const eyebrow = intro?.eyebrow || "Who we are";
+  const title = intro?.title || "Grassroots work. Long-term impact.";
+  const subtitle =
+    intro?.subtitle ||
+    "Nur and Najat Foundation (NNF) is a community-focused non-governmental, non-profit and non-political organization based in Panchagarh, Bangladesh. Since its establishment in January 2025, the Foundation has worked to support underserved people through humanitarian assistance, social welfare, educational support, women’s development and sustainable community initiatives.";
+  const sideImage = side?.image || thumb.handHeart;
+  const sideAlt = side?.alt || "Community support and youth-led action";
+  const sideBadge = side?.badge || "Panchagarh, Bangladesh";
+  const body = paragraphs?.length ? paragraphs : DEFAULT_PARAGRAPHS;
+  const primaryLabel = cta?.primary?.label || "Get involved";
+  const primaryHref = cta?.primary?.href || "/get-involved";
+  const secondaryLabel = cta?.secondary?.label || "Donate";
+  const secondaryHref = cta?.secondary?.href || "/donate";
+
   return (
     <section className="space-y-10 lg:space-y-12">
       <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-12">
@@ -24,9 +50,9 @@ export function AboutUS() {
           transition={{ duration: DURATION.section, ease: EASE }}
         >
           <SectionHeading
-            eyebrow="Who we are"
-            title="Grassroots work. Long-term impact."
-            subtitle="Nur and Najat Foundation (NNF) is a community-focused non-governmental, non-profit and non-political organization based in Panchagarh, Bangladesh. Since its establishment in January 2025, the Foundation has worked to support underserved people through humanitarian assistance, social welfare, educational support, women’s development and sustainable community initiatives."
+            eyebrow={eyebrow}
+            title={title}
+            subtitle={subtitle}
             align="left"
             className="max-w-none"
           />
@@ -42,8 +68,8 @@ export function AboutUS() {
           <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-md">
             <div className="relative aspect-[4/3]">
               <Image
-                src={thumb.handHeart}
-                alt="Community support and youth-led action"
+                src={sideImage}
+                alt={sideAlt}
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 40vw, 100vw"
@@ -59,7 +85,7 @@ export function AboutUS() {
                   className="inline-block h-2 w-2 rounded-full bg-primary"
                   aria-hidden
                 />
-                Panchagarh, Bangladesh
+                {sideBadge}
               </div>
             </div>
           </div>
@@ -73,43 +99,9 @@ export function AboutUS() {
         viewport={view}
         transition={{ duration: DURATION.section, ease: EASE }}
       >
-        <p>
-          NNF was founded on the understanding that poverty and vulnerability are
-          rarely caused by a single problem. A family may struggle with income
-          while also facing poor access to healthcare. A talented student may be
-          forced to leave education because of financial hardship. A woman may
-          have the ability and determination to become self-reliant but lack
-          access to information, training, healthcare or a supportive platform. A
-          village may have active students and workers, yet unsafe roads and
-          insufficient lighting can restrict mobility after dark.
-        </p>
-        <p>
-          Our response is therefore designed around people rather than isolated
-          problems. We work to connect humanitarian support with education,
-          health, skills, community infrastructure, environmental responsibility
-          and opportunities for participation. This integrated approach reflects
-          our belief that sustainable development becomes possible when
-          communities are supported from multiple directions and when people are
-          treated as partners in change rather than passive recipients of
-          assistance.
-        </p>
-        <p>
-          The Foundation gives special attention to women, young people, students
-          and families facing social or economic disadvantage. Our goal is not
-          simply to count activities. We want to see what those activities make
-          possible: a woman who feels heard and supported, a student who can
-          continue learning, a family that gains greater stability, a young
-          person who discovers purpose, or a community that becomes safer and
-          more resilient.
-        </p>
-        <p>
-          NNF remains rooted in charitable values, but our ambition goes beyond
-          charity. We seek to strengthen human dignity, equality of opportunity,
-          community participation and self-reliance. True change is rarely
-          created by one act of assistance. It grows through consistent support,
-          trust, local participation and the belief that every person deserves
-          the opportunity to build a better future.
-        </p>
+        {body.map((paragraph) => (
+          <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+        ))}
       </motion.div>
 
       <motion.div
@@ -119,11 +111,11 @@ export function AboutUS() {
         viewport={view}
         transition={{ duration: DURATION.section, ease: EASE }}
       >
-        <ButtonLink href="/get-involved" variant="primary" className="px-7">
-          Get involved
+        <ButtonLink href={primaryHref} variant="primary" className="px-7">
+          {primaryLabel}
         </ButtonLink>
-        <ButtonLink href="/donate" variant="outlineDark">
-          Donate
+        <ButtonLink href={secondaryHref} variant="outlineDark">
+          {secondaryLabel}
         </ButtonLink>
       </motion.div>
     </section>
