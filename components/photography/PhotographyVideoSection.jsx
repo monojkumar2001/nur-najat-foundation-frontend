@@ -2,24 +2,24 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { ArrowUpRight, Play, X } from "lucide-react";
-import { photographyVideos, youtubeEmbedUrl, youtubeThumbUrl } from "@/lib/photography";
+import { youtubeEmbedUrl, youtubeThumbUrl } from "@/lib/videos";
 
 const INITIAL_COUNT = 4;
-const TOTAL = 12;
 
-export function PhotographyVideoSection() {
-  const items = photographyVideos.slice(0, TOTAL);
+export function PhotographyVideoSection({ videos = [] }) {
+  const items = (videos || []).filter(
+    (v) => v?.videoSrc || v?.youtubeId,
+  );
   const [expanded, setExpanded] = useState(false);
   const [openId, setOpenId] = useState(null);
 
-  const showSeeToggle =
-    items.length > INITIAL_COUNT && items.length < TOTAL;
+  const showSeeToggle = items.length > INITIAL_COUNT;
   const visible = showSeeToggle
     ? expanded
       ? items
       : items.slice(0, INITIAL_COUNT)
     : items;
-  const openVideo = openId ? items.find((v) => v.id === openId) : null;
+  const openVideo = openId ? items.find((v) => String(v.id) === String(openId)) : null;
 
   const closeModal = useCallback(() => setOpenId(null), []);
 
@@ -36,6 +36,10 @@ export function PhotographyVideoSection() {
       document.body.style.overflow = prev;
     };
   }, [openId, closeModal]);
+
+  if (!items.length) {
+    return null;
+  }
 
   return (
     <section
@@ -70,7 +74,14 @@ export function PhotographyVideoSection() {
                 className="group relative w-full cursor-pointer overflow-hidden rounded-2xl bg-white text-left shadow-md ring-1 ring-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 <div className="relative aspect-video w-full overflow-hidden bg-slate-900">
-                  {video.videoSrc ? (
+                  {video.thumbnail ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={video.thumbnail}
+                      alt=""
+                      className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.06]"
+                    />
+                  ) : video.videoSrc ? (
                     <video
                       src={video.videoSrc}
                       muted

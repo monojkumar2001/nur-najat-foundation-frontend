@@ -2,6 +2,7 @@ import { PageHeader } from "@/components/Layout/PageHeader";
 import { PhotographyGallerySection } from "@/components/photography/PhotographyGallerySection";
 import { PhotographyVideoSection } from "@/components/photography/PhotographyVideoSection";
 import { fetchGalleries } from "@/lib/gallery";
+import { fetchVideos } from "@/lib/videos";
 import { hero } from "@/lib/unsplash";
 
 export const metadata = {
@@ -11,7 +12,10 @@ export const metadata = {
 };
 
 export default async function PhotographyPage() {
-  const galleries = await fetchGalleries();
+  const [galleries, videos] = await Promise.all([
+    fetchGalleries(),
+    fetchVideos(),
+  ]);
 
   return (
     <>
@@ -25,7 +29,7 @@ export default async function PhotographyPage() {
 
       <div className="relative -mt-6 overflow-hidden rounded-t-3xl bg-white pt-10 shadow-sm ring-1 ring-slate-200/80">
         <PhotographyGallerySection images={galleries} />
-        <PhotographyVideoSection />
+        <PhotographyVideoSection videos={videos} />
         <div className="h-10" aria-hidden />
       </div>
     </>
