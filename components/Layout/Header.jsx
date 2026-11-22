@@ -21,9 +21,8 @@ const navItems = [
     children: whoWeAreLinks,
   },
   { href: "/press-centre", label: "Press Centre" },
-  { href: "/emergencies", label: "Emergencies" },
-  { href: "/photography", label: "Photography" },
-  { href: "/blog", label: "Blog" },
+  { href: "/programs", label: "Programmes" },
+  { href: "/contact", label: "Contact us" },
 ];
 
 function ChevronDown({ className = "h-4 w-4" }) {
