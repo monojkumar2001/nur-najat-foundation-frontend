@@ -9,6 +9,8 @@ import { hero } from "@/lib/unsplash";
 
 export function ProgramDetail({ program, prev = null, next = null }) {
   const heroImage = program.heroImage || program.image || hero.programs;
+  const detailImage =
+    program.detailImage || program.image || hero.programs;
   const sections = Array.isArray(program.sections) ? program.sections : [];
 
   return (
@@ -36,9 +38,9 @@ export function ProgramDetail({ program, prev = null, next = null }) {
           <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-12">
             <Reveal className="lg:col-span-5" y={18}>
               <div className="relative aspect-[4/3] overflow-hidden rounded-[1.25rem] shadow-xl ring-1 ring-slate-200/60">
-                {program.image ? (
+                {detailImage ? (
                   <Image
-                    src={program.image}
+                    src={detailImage}
                     alt={program.imageAlt || program.title}
                     fill
                     className="object-cover"
