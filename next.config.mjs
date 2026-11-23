@@ -4,8 +4,8 @@ const nextConfig = {
     "config-les-malpractice-journalism.trycloudflare.com",
     "*.trycloudflare.com",
   ],
-
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
