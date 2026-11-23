@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   allowedDevOrigins: [
-    "vehicle-income-foo-sprint.trycloudflare.com",
+    "config-les-malpractice-journalism.trycloudflare.com",
     "*.trycloudflare.com",
   ],
   images: {
@@ -13,7 +13,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "dicke-initiated-ancient-different.trycloudflare.com",
+        hostname: "passive-preview-demonstrate-materials.trycloudflare.com",
+        pathname: "/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.trycloudflare.com",
         pathname: "/uploads/**",
       },
       {
