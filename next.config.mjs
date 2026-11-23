@@ -4,6 +4,7 @@ const nextConfig = {
     "config-les-malpractice-journalism.trycloudflare.com",
     "*.trycloudflare.com",
   ],
+
   images: {
     remotePatterns: [
       {
@@ -13,24 +14,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "passive-preview-demonstrate-materials.trycloudflare.com",
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: "https",
-        hostname: "*.trycloudflare.com",
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "8000",
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: "http",
-        hostname: "127.0.0.1",
-        port: "8000",
+        hostname: "test.nawshadzamir.com",
         pathname: "/uploads/**",
       },
     ],
